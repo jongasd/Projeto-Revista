@@ -13,9 +13,7 @@ const CAMPOS_PUBLICOS =
 
 const Usuario = {
   findAll: () =>
-    // senha nunca retorna na listagem
     executarQuery(`SELECT ${CAMPOS_PUBLICOS} FROM usuario ORDER BY nome ASC`),
-
   findById: async (id) => {
     const resultado = await executarQuery(
       `SELECT ${CAMPOS_PUBLICOS} FROM usuario WHERE id = ?`,
@@ -25,7 +23,6 @@ const Usuario = {
   },
 
   findByEmail: async (email) => {
-    // inclui senha pois é usado no login para comparação
     const resultado = await executarQuery(
       "SELECT * FROM usuario WHERE email = ?",
       [email],

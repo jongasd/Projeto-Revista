@@ -1,4 +1,4 @@
-const pool = require("../config/database");
+  const pool = require("../config/database");
 
 /**
  * Executa uma query SQL de forma assíncrona.
