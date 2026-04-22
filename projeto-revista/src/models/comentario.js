@@ -29,4 +29,4 @@ const comentario = {
     }
 }
 
-module.exports = Comentario
+module.exports = comentario
