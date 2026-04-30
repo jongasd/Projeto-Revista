@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduPortal | Inserir Publicação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/style.css" />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <main class="container">
+      <aside class="panel-left">
+        <a href="../index.html" class="back-link">Voltar ao portal</a>
+        <a href="../pages/noticia.html" class="add-post">Nova Publicação</a>
+        <div class="brand">
+          <span class="brand-icon">✦</span>
+          <span class="brand-name">EduPortal</span>
+        </div>
+        <div class="panel-text">
+          <h1>Publique sua<br /><em>produção</em></h1>
+          <p>
+            Compartilhe ensaios, artigos, charges e crônicas. Siga o padrão
+            editorial para manter a qualidade da nossa revista digital.
+          </p>
+        </div>
+        <div class="panel-divider"></div>
+        <div class="panel-steps">
+          <div class="step active" data-step="1">
+            <span class="step-num">01</span>
+            <span class="step-label">Classificação</span>
+          </div>
+          <div class="step" data-step="2">
+            <span class="step-num">02</span>
+            <span class="step-label">Conteúdo Principal</span>
+          </div>
+          <div class="step" data-step="3">
+            <span class="step-num">03</span>
+            <span class="step-label">Mídia de Capa</span>
+          </div>
+        </div>
+      </aside>
+
+      <section class="panel-right">
+        <div class="form-wrapper">
+          <form
+            id="contentForm"
+            action="/salvar-publicacao"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="form-step active" id="step-1">
+              <h2 class="step-title">Informações Iniciais</h2>
+              <p class="step-sub">O que você vai publicar hoje?</p>
+
+              <div class="field">
+                <label for="genero"
+                  >Gênero Textual / Visual <span class="req">*</span></label
+                >
+                <div class="select-wrapper">
+                  <select id="genero" name="genero" required>
+                    <option value="" disabled selected>
+                      Selecione uma opção...
+                    </option>
+                    <option value="Artigo de Opinião">Artigo de Opinião</option>
+                    <option value="Ensaio Acadêmico">Ensaio Acadêmico</option>
+                    <option value="Imagem / Ilustração">
+                      Imagem / Ilustração
+                    </option>
+                    <option value="Crônica">Crônica</option>
+                  </select>
+                </div>
+                <span class="field-error" id="erro-genero"></span>
+              </div>
+
+              <button type="button" class="btn-next" onclick="goToStep(2)">
+                Próximo →
+              </button>
+            </div>
+
+            <div class="form-step" id="step-2">
+              <h2 class="step-title">Corpo da Publicação</h2>
+              <p class="step-sub">
+                Preencha o título, lide e insira seu texto ou arquivo de imagem.
+              </p>
+
+              <div class="field">
+                <label for="titulo">Título <span class="req">*</span></label>
+                <input
+                  type="text"
+                  id="titulo"
+                  name="titulo"
+                  placeholder="Ex: O impacto da IA no século XXI"
+                  maxlength="150"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="descricao"
+                  >Descrição (Lide) <span class="req">*</span></label
+                >
+                <textarea
+                  id="descricao"
+                  name="descricao"
+                  placeholder="Resumo de até 100 caracteres que atrai o leitor..."
+                  maxlength="100"
+                  rows="2"
+                  required
+                ></textarea>
+                <span class="char-count" id="char-count-desc">0 / 100</span>
+              </div>
+
+              <div class="field">
+                <label>Formato do Conteúdo <span class="req">*</span></label>
+                <div style="display: flex; gap: 20px; margin-top: 8px">
+                  <label
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 6px;
+                      cursor: pointer;
+                      font-size: 14px;
+                    "
+                  >
+                    <input
+                      type="radio"
+                      name="formato_conteudo"
+                      value="texto"
+                      checked
+                      onchange="toggleFormatoConteudo()"
+                    />
+                    Texto
+                  </label>
+                  <label
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 6px;
+                      cursor: pointer;
+                      font-size: 14px;
+                    "
+                  >
+                    <input
+                      type="radio"
+                      name="formato_conteudo"
+                      value="imagem"
+                      onchange="toggleFormatoConteudo()"
+                    />
+                    Imagem
+                  </label>
+                </div>
+              </div>
+
+              <div class="field" id="campo-texto">
+                <label for="conteudo"
+                  >Conteúdo Principal (Texto) <span class="req">*</span></label
+                >
+                <textarea
+                  id="conteudo"
+                  name="conteudo"
+                  placeholder="Escreva ou cole seu texto completo aqui..."
+                  rows="6"
+                  required
+                ></textarea>
+              </div>
+
+              <div
+                class="field avatar-upload-field"
+                id="campo-imagem"
+                style="display: none"
+              >
+                <label
+                  >Conteúdo Principal (Upload de Imagem)
+                  <span class="req">*</span></label
+                >
+                <div class="avatar-preview-wrap">
+                  <div
+                    class="avatar-preview"
+                    id="conteudo-preview"
+                    style="border-radius: 8px; width: 100px; height: 100px"
+                  >
+                    <span id="conteudo-placeholder">🖼️</span>
+                    <img
+                      id="conteudo-img-tag"
+                      src=""
+                      alt="preview"
+                      style="
+                        display: none;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 8px;
+                      "
+                    />
+                  </div>
+                  <div class="avatar-upload-info">
+                    <input
+                      type="file"
+                      id="arquivo_conteudo"
+                      name="arquivo_conteudo"
+                      accept="image/*"
+                      style="display: none"
+                      onchange="previewConteudo(this)"
+                    />
+                    <button
+                      type="button"
+                      class="btn-upload"
+                      onclick="
+                        document.getElementById('arquivo_conteudo').click()
+                      "
+                    >
+                      Escolher arquivo
+                    </button>
+                    <small>JPG, PNG ou SVG · Máx. 10MB</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-row">
+                <button type="button" class="btn-back" onclick="goToStep(1)">
+                  ← Voltar
+                </button>
+                <button type="button" class="btn-next" onclick="goToStep(3)">
+                  Próximo →
+                </button>
+              </div>
+            </div>
+
+            <div class="form-step" id="step-3">
+              <h2 class="step-title">Capa da Publicação</h2>
+              <p class="step-sub">
+                Adicione a imagem de capa (opcional se for apenas uma charge).
+              </p>
+
+              <div class="field avatar-upload-field">
+                <label>Imagem de Capa (Thumbnail)</label>
+                <div class="avatar-preview-wrap">
+                  <div class="avatar-preview" id="image-preview">
+                    <span id="image-placeholder">📸</span>
+                    <img
+                      id="capa-img"
+                      src=""
+                      alt="preview"
+                      style="
+                        display: none;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                      "
+                    />
+                  </div>
+                  <div class="avatar-upload-info">
+                    <input
+                      type="file"
+                      id="imagem_id"
+                      name="imagem_id"
+                      accept="image/*"
+                      style="display: none"
+                      onchange="previewCapa(this)"
+                    />
+                    <button
+                      type="button"
+                      class="btn-upload"
+                      onclick="document.getElementById('imagem_id').click()"
+                    >
+                      Escolher imagem
+                    </button>
+                    <small>JPG, PNG ou SVG · Máx. 5MB</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-row">
+                <button type="button" class="btn-back" onclick="goToStep(2)">
+                  ← Voltar
+                </button>
+                <button type="submit" class="btn-submit" id="btn-submit">
+                  <span id="btn-label">Publicar Conteúdo</span>
+                  <span
+                    class="spinner"
+                    id="spinner"
+                    style="display: none"
+                  ></span>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div
+            class="form-step success-screen"
+            id="step-success"
+            style="display: none"
+          >
+            <div class="success-icon">✓</div>
+            <h2>Publicação Enviada!</h2>
+            <p>
+              Seu conteúdo foi salvo com sucesso e em breve estará disponível no
+              EduPortal.
+            </p>
+            <div class="btn-row">
+              <button class="btn-back" onclick="location.href = 'portal.html'">
+                Ir para o Portal
+              </button>
+              <button class="btn-next" onclick="location.reload()">
+                Nova Publicação
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../scripts/noticia.js"></script>
+  </body>
+</html>
