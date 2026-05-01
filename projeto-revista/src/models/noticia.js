@@ -1,4 +1,4 @@
-  const pool = require("../config/database");
+const pool = require("../config/database");
 
 /**
  * Executa uma query SQL de forma assíncrona.
@@ -20,10 +20,9 @@ const Noticia = {
    */
   findAll: () =>
     executarQuery(`
-      SELECT n.*, u.nome AS autor, c.tipo_categoria AS categoria
+      SELECT n.*, u.nome AS autor
       FROM noticia n
       LEFT JOIN usuario u ON u.id = n.usuario_id
-      LEFT JOIN categoria c ON c.id = n.categoria_id
     `),
 
   /**
