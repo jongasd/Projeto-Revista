@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const app = express();
 
 // CORS — permite requisições do frontend
@@ -22,6 +23,14 @@ app.use("/comentarios", require("./routes/comentarioRoutes"));
 app.use("/curtidas", require("./routes/curtidaRoutes"));
 app.use("/favoritos", require("./routes/favoritarRoutes"));
 app.use("/usuario", require("./routes/usuarioRoutes"));
+app.use("/imagens", require("./routes/imagemRoutes"));
+app.use(
+  "/images",
+  express.static(path.join(__dirname, "..", "uploads/images")),
+);
+app.use(express.urlencoded({ extended: true }));  
+
+app.use("/upload", require("./routes/uploadRoutes"));
 
 app.use(require("./middlewares/errorHandler"));
 

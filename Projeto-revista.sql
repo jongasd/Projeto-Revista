@@ -84,10 +84,16 @@ CREATE TABLE IF NOT EXISTS favoritar(
         REFERENCES usuario(id)
         ON DELETE CASCADE
 );
-CREATE TABLE IF NOT EXISTS imagem(
-	id INT AUTO_INCREMENT PRIMARY KEY,
-    link text NULL
+CREATE TABLE IF NOT EXISTS imagem (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(255) NOT NULL,
+    link TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
 );
 
+ALTER TABLE noticia ADD COLUMN imagem_capa VARCHAR(500) NULL AFTER conteudo;
 # -------------------------------------------------------------------------
-
+drop table imagem ;
+drop database projeto_revista
