@@ -11,7 +11,7 @@ app.use(
   }),
 );
 
-// Aumenta o limite para suportar foto_perfil em base64
+// Aumenta o limite para suportar payloads maiores (ex: foto em base64)
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 

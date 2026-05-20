@@ -6,7 +6,7 @@ const CAMPOS_OBRIGATORIOS_CRIACAO = [
   "categoria_id",
   "titulo",
   "conteudo",
-];
+  ];
 
 const CAMPOS_ATUALIZAVEIS = ["titulo", "genero", "descricao", "conteudo"];
 
