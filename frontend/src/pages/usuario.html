@@ -3,259 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro de Usuário</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../style/styles.css" />
+    <title>Conecta Jovem — Cadastro</title>
+    <link rel="stylesheet" href="../styles/style.css" />
   </head>
+
   <body>
-    <div class="bg-grid"></div>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+    <header class="header"><h1>Conecta Jovem</h1></header>
 
     <main class="container">
-      <aside class="panel-left">
-        <div class="brand">
-          <span class="brand-icon">✦</span>
-          <span class="brand-name">EduPortal</span>
-        </div>
-        <div class="panel-text">
-          <h1>Crie sua<br /><em>conta agora</em></h1>
-          <p>
-            Acesse recursos exclusivos, acompanhe seu desempenho e conecte-se
-            com sua turma.
-          </p>
-        </div>
-        <div class="panel-steps">
-          <div class="step active" data-step="1">
-            <span class="step-num">01</span>
-            <span class="step-label">Dados pessoais</span>
-          </div>
-          <div class="step" data-step="2">
-            <span class="step-num">02</span>
-            <span class="step-label">Acesso &amp; segurança</span>""""
-          </div>
-          <div class="step" data-step="3">
-            <span class="step-num">03</span>
-            <span class="step-label">Perfil opcional</span>
-          </div>
-        </div>
-      </aside>
+      <!-- ── ESQUERDO ── -->
+      <section class="left">
+        <article class="logo-area">
+          <img
+            src="../images/conecta-jovem.png"
+            alt="Conecta Jovem"
+            class="logo-img"
+          />
+        </article>
+      </section>
 
-      <section class="panel-right">
-        <div class="form-wrapper">
-          <!-- STEP 1 -->
-          <div class="form-step active" id="step-1">
-            <h2 class="step-title">Dados Pessoais</h2>
-            <p class="step-sub">Preencha suas informações básicas.</p>
+      <!-- ── DIREITO ── -->
+      <section class="right">
+        <article class="form-box">
+          <h2 class="title">CADASTRO</h2>
 
-            <div class="field">
-              <label for="nome">Nome completo <span class="req">*</span></label>
-              <input
-                type="text"
-                id="nome"
-                name="nome"
-                placeholder="Ex: João da Silva"
-                maxlength="150"
-                required
-              />
-              <span class="field-error" id="erro-nome"></span>
+          <form id="cadastroForm">
+            <div class="input-group">
+              <label for="nome">Nome completo</label>
+              <input type="text" id="nome" placeholder="Nome completo" />
             </div>
 
-            <div class="row-2">
-              <div class="field">
-                <label for="rm">RM <span class="req">*</span></label>
-                <input
-                  type="number"
-                  id="rm"
-                  name="rm"
-                  placeholder="000000"
-                  required
-                />
-                <span class="field-error" id="erro-rm"></span>
-              </div>
-              <div class="field">
-                <label for="turma">Turma <span class="req">*</span></label>
-                <input
-                  type="text"
-                  id="turma"
-                  name="turma"
-                  placeholder="Ex: 3A001"
-                  maxlength="6"
-                  required
-                />
-                <span class="field-error" id="erro-turma"></span>
-              </div>
+            <div class="input-group">
+              <label for="senha">Senha</label>
+              <input type="password" id="senha" placeholder="Senha" />
             </div>
 
-            <div class="field">
-              <label for="tipo"
-                >Tipo de usuário <span class="req">*</span></label
-              >
-              <div class="select-wrapper">
-                <select id="tipo" name="tipo" required>
-                  <option value="" disabled selected>Selecione...</option>
-                  <option value="aluno">Aluno</option>
-                  <option value="professor">Professor</option>
-                </select>
-              </div>
-              <span class="field-error" id="erro-tipo"></span>
+            <div class="input-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" placeholder="E-mail" />
             </div>
 
-            <button class="btn-next" onclick="goToStep(2)">Próximo →</button>
-          </div>
-
-          <!-- STEP 2 -->
-          <div class="form-step" id="step-2">
-            <h2 class="step-title">Acesso &amp; Segurança</h2>
-            <p class="step-sub">Defina suas credenciais de login.</p>
-
-            <div class="field">
-              <label for="email">E-mail <span class="req">*</span></label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="seuemail@escola.com.br"
-                maxlength="508"
-                required
-              />
-              <span class="field-error" id="erro-email"></span>
+            <div class="input-group">
+              <label for="cargo">Cargo</label>
+              <select id="cargo">
+                <option value="Aluno">Aluno</option>
+                <option value="Professor">Professor</option>
+              </select>
             </div>
 
-            <div class="field">
-              <label for="senha">Senha <span class="req">*</span></label>
-              <div class="input-eye">
-                <input
-                  type="password"
-                  id="senha"
-                  name="senha"
-                  placeholder="Mínimo 8 caracteres" 
-                  maxlength="150"
-                  required
-                />
-                <button
-                  type="button"
-                  class="eye-btn"
-                  onclick="toggleSenha('senha', this)"
-                >
-                  👁
-                </button>
-              </div>
-              <div class="strength-bar">
-                <div class="strength-fill" id="strength-fill"></div>
-              </div>
-              <span class="strength-label" id="strength-label"></span>
-              <span class="field-error" id="erro-senha"></span>
+            <div class="input-group" id="grupo-rm">
+              <label for="rm">RM</label>
+              <input type="text" id="rm" placeholder="RM" />
             </div>
 
-            <div class="field">
-              <label for="confirmar-senha"
-                >Confirmar senha <span class="req">*</span></label
-              >
-              <div class="input-eye">
-                <input
-                  type="password"
-                  id="confirmar-senha"
-                  name="confirmar-senha"
-                  placeholder="Repita a senha"
-                  maxlength="150"
-                  required
-                />
-                <button
-                  type="button"
-                  class="eye-btn"
-                  onclick="toggleSenha('confirmar-senha', this)"
-                >
-                  👁
-                </button>
-              </div>
-              <span class="field-error" id="erro-confirmar-senha"></span>
+            <div class="input-group hidden" id="grupo-nif">
+              <label for="nif">NIF</label>
+              <input type="text" id="nif" placeholder="NIF" />
             </div>
 
-            <div class="btn-row">
-              <button class="btn-back" onclick="goToStep(1)">← Voltar</button>
-              <button class="btn-next" onclick="goToStep(3)">Próximo →</button>
-            </div>
-          </div>
-
-          <!-- STEP 3 -->
-          <div class="form-step" id="step-3">
-            <h2 class="step-title">Perfil Opcional</h2>
-            <p class="step-sub">Personalize como os outros te veem.</p>
-
-            <div class="field avatar-upload-field">
-              <label>Foto de perfil</label>
-              <div class="avatar-preview-wrap">
-                <div class="avatar-preview" id="avatar-preview">
-                  <span id="avatar-placeholder">+</span>
-                  <img
-                    id="avatar-img"
-                    src=""
-                    alt="preview"
-                    style="display: none"
-                  />
-                </div>
-                <div class="avatar-upload-info">
-                  <input
-                    type="file"
-                    id="foto_perfil"
-                    name="foto_perfil"
-                    accept="image/*"
-                    style="display: none"
-                    onchange="previewAvatar(this)"
-                  />
-                  <button
-                    type="button"
-                    class="btn-upload"
-                    onclick="document.getElementById('foto_perfil').click()"
-                  >
-                    Escolher imagem
-                  </button>
-                  <small>JPG, PNG ou GIF · Máx. 5MB</small>
-                </div>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="descricao">Descrição</label>
-              <textarea
-                id="descricao"
-                name="descricao"
-                placeholder="Conte um pouco sobre você..."
-                maxlength="1000"
-                rows="4"
-              ></textarea>
-              <span class="char-count" id="char-count">0 / 1000</span>
-            </div>
-
-            <div class="btn-row">
-              <button class="btn-back" onclick="goToStep(2)">← Voltar</button>
-              <button class="btn-submit" id="btn-submit" onclick="submitForm()">
-                <span id="btn-label">Criar conta</span>
-                <span class="spinner" id="spinner" style="display: none"></span>
-              </button>
-            </div>
-          </div>
-
-          <!-- SUCCESS -->
-          <div class="form-step success-screen" id="step-success">
-            <div class="success-icon">✓</div>
-            <h2>Conta criada!</h2>
-            <p>
-              Seu cadastro foi realizado com sucesso. Bem-vindo(a) ao EduPortal.
-            </p>
-            <button class="btn-next" onclick="resetForm()">
-              Fazer novo cadastro
+            <button type="submit" class="btn">
+              Cadastrar e ir para tela inicial
             </button>
-          </div>
-        </div>
+          </form>
+
+          <p class="cancel">Cancelar cadastro</p>
+        </article>
       </section>
     </main>
 
-    <script src="../js/usuario.js"></script>
+    <footer class="footer"><p>© 2026 Conecta Jovem</p></footer>
+
+    <script src="../scripts/index.js"></script>
   </body>
 </html>
