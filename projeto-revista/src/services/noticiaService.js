@@ -3,12 +3,12 @@ const AppError = require("../utils/appError");
 
 const CAMPOS_OBRIGATORIOS_CRIACAO = [
   "usuario_id",
-  "categoria_id",
+  "genero",
   "titulo",
   "conteudo",
-];
+  ];
 
-const CAMPOS_ATUALIZAVEIS = ["titulo", "genero", "descricao", "conteudo"];
+const CAMPOS_ATUALIZAVEIS = ["titulo","imagem_id", "genero", "descricao", "conteudo"];
 
 /**
  * Valida e converte um ID recebido como string/number.
@@ -76,9 +76,8 @@ const noticiaService = {
 
     const dados = {
       usuario_id: Number(body.usuario_id),
-      categoria_id: Number(body.categoria_id),
       titulo: String(body.titulo).trim(),
-      genero: body.genero ? String(body.genero).trim() : null,
+      genero: String(body.genero).trim(),
       descricao: body.descricao ? String(body.descricao).trim() : null,
       conteudo: String(body.conteudo).trim(),
     };

@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const Usuario = require("../models/usuario");
-const AppError = require("../utils/AppError");
+const AppError = require("../utils/appError"); // ← corrigido: minúsculo
 
 const SALT_ROUNDS = 10;
 const TIPOS_VALIDOS = ["aluno", "professor", "admin"];
@@ -92,7 +92,6 @@ const usuarioService = {
       return acc;
     }, {});
 
-    // Atualização de senha opcional e separada
     if (body.senha) {
       if (String(body.senha).length < 6) {
         throw new AppError("A senha deve ter ao menos 6 caracteres", 400);
