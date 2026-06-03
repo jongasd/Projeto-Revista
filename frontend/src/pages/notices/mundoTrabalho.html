@@ -1,0 +1,275 @@
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conecta Jovem — Mundo do Trabalho</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+  </head>
+
+  <body class="feed-body">
+    <!-- ══════════════ NAVBAR ══════════════ -->
+    <nav class="feed-nav">
+      <button class="feed-nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="feed-nav-search">
+        <input type="text" placeholder="" id="searchInput" />
+        <button class="feed-nav-search-btn" aria-label="Buscar">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="feed-nav-user">
+        <span class="feed-nav-username">Nome</span>
+        <div class="feed-nav-avatar" id="navAvatar"><span>N</span></div>
+      </div>
+    </nav>
+
+    <!-- ══════════════ CATEGORIAS ══════════════ -->
+    <div class="feed-categories">
+      <a href="educacao.html" class="feed-cat ">Educação</a>
+      <a href="politica.html" class="feed-cat">Política</a>
+      <a href="tecnologia.html" class="feed-cat">Tecnologia</a>
+      <a href="saude.html" class="feed-cat">Saúde</a>
+      <a href="economia.html" class="feed-cat">Economia</a>
+      <a href="mundotrabalho.html" class="feed-cat feed-cat--active">Mundo do Trabalho</a>
+      <a href="violencia.html" class="feed-cat">Violência</a>
+      <a href="../favoritos.html" class="feed-cat">Favoritos</a>
+    </div>
+
+    <!-- ══════════════ MAIN ══════════════ -->
+    <div class="cat-layout">
+      <h1 class="cat-page-title">Mundo do Trabalho</h1>
+
+      <div class="cat-grid">
+        <!-- Card 1 -->
+        <article class="feed-card cat-card" onclick="abrirNoticia('mun-01')">
+          <div class="feed-card-img">
+            <img src="#" alt="Notícia" />
+            <button class="feed-card-star" aria-label="Favoritar">☆</button>
+          </div>
+          <div class="feed-card-body">
+            <h3 class="feed-card-title cat-card-title">
+              Manifesto dos trabalhadores contra a escala 6x1
+            </h3>
+            <div class="feed-card-footer">
+              <div class="feed-card-tags">
+                <span class="feed-tag">Heitor Barbosa dos Santos</span>
+                <span class="feed-tag">Mundo do Trabalho</span>
+              </div>
+              <div class="feed-card-stats">
+                <span class="feed-stat">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    /></svg
+                  >5
+                </span>
+                <span class="feed-stat">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    /></svg
+                  >23
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="feed-card cat-card" onclick="abrirNoticia('mun-02')">
+          <div class="feed-card-img">
+            <img src="#" alt="Notícia" />
+            <button class="feed-card-star" aria-label="Favoritar">☆</button>
+          </div>
+          <div class="feed-card-body">
+            <h3 class="feed-card-title cat-card-title">
+              Depoimento
+            </h3>
+            <div class="feed-card-footer">
+              <div class="feed-card-tags">
+                <span class="feed-tag">João Marcos Ferreira Benevides</span>
+                <span class="feed-tag">Mundo do Trabalho</span>
+              </div>
+              <div class="feed-card-stats">
+                <span class="feed-stat">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    /></svg
+                  >3
+                </span>
+                <span class="feed-stat">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    /></svg
+                  >18
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="feed-card cat-card" onclick="abrirNoticia('mun-03')">
+          <div class="feed-card-img">
+            <img src="#" alt="Notícia" />
+            <button class="feed-card-star" aria-label="Favoritar">☆</button>
+          </div>
+          <div class="feed-card-body">
+            <h3 class="feed-card-title cat-card-title">
+              Carta Pessoal
+            </h3>
+            <div class="feed-card-footer">
+              <div class="feed-card-tags">
+                <span class="feed-tag">Mateus Lopes Ferreira</span>
+                <span class="feed-tag">Mundo do Trabalho</span>
+              </div>
+              <div class="feed-card-stats">
+                <span class="feed-stat">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    /></svg
+                  >7
+                </span>
+                <span class="feed-stat">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    /></svg
+                  >20
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="feed-card cat-card" onclick="abrirNoticia('mun-04')">
+          <div class="feed-card-img">
+            <img src="#" alt="Notícia" />
+            <button class="feed-card-star" aria-label="Favoritar">☆</button>
+          </div>
+          <div class="feed-card-body">
+            <h3 class="feed-card-title cat-card-title">
+              A redução da jornada de trabalho: o passo ao mercado de trabalho mais humano
+            </h3>
+            <div class="feed-card-footer">
+              <div class="feed-card-tags">
+                <span class="feed-tag">Vinícius Assunção Santos</span>
+                <span class="feed-tag">Mundo do Trabalho</span>
+              </div>
+              <div class="feed-card-stats">
+                <span class="feed-stat">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    /></svg
+                  >7
+                </span>
+                <span class="feed-stat">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    /></svg
+                  >8
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    <script src="../../scripts/mundodotrabalho.js"></script>
+  </body>
+</html>

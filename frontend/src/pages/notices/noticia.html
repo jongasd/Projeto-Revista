@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notícia — Conecta Jovem</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+    <link rel="stylesheet" href="../../styles/noticia.css" />
+    <script type="module">
+      import * as pdfjsLib from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.269/build/pdf.min.mjs";
+      window.pdfjsLib = pdfjsLib;
+      window.dispatchEvent(new Event("pdfjsReady"));
+    </script>
+  </head>
+
+  <body class="feed-body">
+    <!-- ══════════════ NAVBAR (idêntica ao restante do projeto) ══════════════ -->
+    <nav class="feed-nav">
+      <button class="feed-nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="feed-nav-search">
+        <input type="text" placeholder="" id="searchInput" />
+        <button class="feed-nav-search-btn" aria-label="Buscar">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="feed-nav-user">
+        <span class="feed-nav-username">Nome</span>
+        <div class="feed-nav-avatar" id="navAvatar"><span>N</span></div>
+      </div>
+    </nav>
+
+    <!-- ══════════════ CATEGORIAS ══════════════ -->
+    <div class="feed-categories">
+      <a href="educacao.html" class="feed-cat feed-cat--active">Educação</a>
+      <a href="politica.html" class="feed-cat">Política</a>
+      <a href="mundotrabalho.html" class="feed-cat">Mundo do Trabalho</a>
+      <a href="tecnologia.html" class="feed-cat">Tecnologia</a>
+      <a href="saude.html" class="feed-cat">Saúde</a>
+      <a href="economia.html" class="feed-cat">Economia</a>
+      <a href="violencia.html" class="feed-cat">Violência</a>
+      <a href="../favoritos.html" class="feed-cat">Favoritos</a>
+    </div>
+
+    <!-- ══════════════ BREADCRUMB ══════════════ -->
+    <div class="noticia-breadcrumb">
+      <a href="javascript:history.back()" class="noticia-back-btn" id="backBtn">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Voltar
+      </a>
+      <span class="noticia-breadcrumb-sep">·</span>
+      <span class="noticia-breadcrumb-cat" id="breadcrumbCat">Categoria</span>
+    </div>
+
+    <!-- ══════════════ MAIN ══════════════ -->
+    <div class="noticia-layout">
+      <!-- Cabeçalho da matéria -->
+      <header class="noticia-header">
+        <div class="noticia-tags" id="noticiaTagsTop">
+          <span class="feed-tag" id="tagCategoria">Categoria</span>
+          <span class="feed-tag noticia-tag-autor" id="tagAutor">Autor</span>
+        </div>
+
+        <h1 class="noticia-titulo" id="noticaTitulo">Carregando matéria…</h1>
+
+        <div class="noticia-meta">
+          <span class="noticia-meta-item" id="metaData">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            <span id="metaDataTxt">—</span>
+          </span>
+
+          <span class="noticia-meta-sep">·</span>
+
+          <span class="noticia-meta-item">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span id="metaTempoTxt">— min de leitura</span>
+          </span>
+
+          <span class="noticia-meta-sep">·</span>
+
+          <!-- Ação: favoritar -->
+          <button
+            class="noticia-action-btn"
+            id="btnFavoritar"
+            aria-label="Favoritar"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02
+                               12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+              />
+            </svg>
+            <span>Favoritar</span>
+          </button>
+
+          <span class="noticia-meta-sep">·</span>
+
+          <!-- Ação: download -->
+          <a class="noticia-action-btn" id="btnDownload" href="#" download>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>Download</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Visualizador PDF -->
+      <div class="noticia-pdf-wrap" id="pdfWrap">
+        <!-- iframe principal -->
+        <div class="noticia-pdf-area" id="pdfViewer">
+          <div class="noticia-pdf-loader" id="pdfLoader">
+            <div class="noticia-spinner"></div>
+            <span>Carregando matéria…</span>
+          </div>
+
+          <div
+            class="noticia-pdf-viewer-wrap"
+            id="pdfViewerWrap"
+            style="display: none"
+          >
+            <div class="noticia-canvas-wrap">
+              <canvas id="pdfCanvas"></canvas>
+            </div>
+            <div class="noticia-paginacao">
+              <button
+                class="noticia-pag-btn"
+                id="btnAnterior"
+                onclick="paginaAnterior()"
+                disabled
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <span class="noticia-pag-info">
+                Página <strong id="paginaAtual">1</strong> de
+                <strong id="paginaTotal">1</strong>
+              </span>
+              <button
+                class="noticia-pag-btn"
+                id="btnProxima"
+                onclick="proximaPagina()"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="noticia-pdf-fallback"
+            id="pdfFallback"
+            style="display: none"
+          >
+            <p>Não foi possível carregar o PDF.</p>
+            <a class="btn noticia-fallback-btn" id="fallbackDownload" href="#"
+              >Abrir arquivo</a
+            >
+          </div>
+        </div>
+        <!-- Fallback para mobile / browsers sem suporte inline -->
+        <div class="noticia-pdf-fallback" id="pdfFallback">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 48 48"
+            fill="none"
+            stroke="#1746a2"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="8" y="4" width="28" height="40" rx="3" />
+            <polyline points="28 4 28 16 40 16" />
+            <line x1="16" y1="26" x2="30" y2="26" />
+            <line x1="16" y1="32" x2="25" y2="32" />
+          </svg>
+          <p>Seu navegador não conseguiu exibir o PDF aqui.</p>
+          <a class="btn noticia-fallback-btn" id="fallbackDownload" href="#">
+            Abrir arquivo
+          </a>
+        </div>
+      </div>
+
+      <!-- Cards relacionados -->
+      <section class="noticia-relacionadas" id="secaoRelacionadas">
+        <h2 class="cat-page-title noticia-relacionadas-title">Veja também</h2>
+        <div class="cat-grid" id="relacionadasGrid">
+          <!-- preenchido pelo JS -->
+        </div>
+      </section>
+    </div>
+    <!-- /noticia-layout -->
+
+    <script src="../../scripts/noticia.js"></script>
+  </body>
+</html>
