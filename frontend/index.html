@@ -15,7 +15,7 @@
       </button>
 
       <div class="feed-nav-search">
-        <input type="text" placeholder="" id="searchInput" />
+        <input type="text" placeholder="Buscar notícias…" id="searchInput" />
         <button class="feed-nav-search-btn" aria-label="Buscar">
           <svg
             width="18"
@@ -41,15 +41,17 @@
 
     <!-- ══════════════ CATEGORIAS ══════════════ -->
     <div class="feed-categories">
-      <a href="./pages/notices/educacao.html" class="feed-cat">Educação</a>
-      <a href="./pages/notices/politica.html" class="feed-cat">Política</a>
-      <a href="./pages/notices/mundoTrabalho.html" class="feed-cat"
+      <a href="./src/pages/notices/educacao.html" class="feed-cat">Educação</a>
+      <a href="./src/pages/notices/politica.html" class="feed-cat">Política</a>
+      <a href="./src/pages/notices/mundoTrabalho.html" class="feed-cat"
         >Mundo do Trabalho</a
       >
-      <a href="./pages/notices/tecnologia.html" class="feed-cat">Tecnologia</a>
-      <a href="./pages/notices/saude.html" class="feed-cat">Saúde</a>
-      <a href="./pages/notices/economia.html" class="feed-cat">Economia</a>
-      <a href="./pages/favoritos.html" class="feed-cat">Favoritos</a>
+      <a href="./src/pages/notices/tecnologia.html" class="feed-cat"
+        >Tecnologia</a
+      >
+      <a href="./src/pages/notices/saude.html" class="feed-cat">Saúde</a>
+      <a href="./src/pages/notices/economia.html" class="feed-cat">Economia</a>
+      <a href="./src/pages/favoritos.html" class="feed-cat">Favoritos</a>
     </div>
 
     <!-- ══════════════ MAIN LAYOUT ══════════════ -->
@@ -60,26 +62,16 @@
         <section class="feed-destaque">
           <article class="feed-destaque-card" id="destaqueCard">
             <div class="feed-destaque-img">
-              <img
-                src="./images/notices/tecnologia/noticia1.jpg"
-                alt="Notícia em Destaque"
-              />
+              <img src="" alt="Notícia em Destaque" />
               <div class="feed-destaque-overlay"></div>
             </div>
             <div class="feed-destaque-body">
               <div class="feed-destaque-tags">
-                <span class="feed-tag">Tecnologia</span>
-                <span class="feed-tag feed-tag--autor">Autor Nome</span>
+                <span class="feed-tag">Categoria</span>
+                <span class="feed-tag feed-tag--autor">Autor</span>
               </div>
-              <h2 class="feed-destaque-title">
-                Título da Notícia em Destaque: uma manchete que chama atenção do
-                leitor
-              </h2>
-              <p class="feed-destaque-desc">
-                Breve descrição da notícia em destaque que apresenta o assunto
-                de forma resumida e convida o leitor a continuar lendo o
-                conteúdo completo.
-              </p>
+              <h2 class="feed-destaque-title">Carregando…</h2>
+              <p class="feed-destaque-desc"></p>
               <div class="feed-destaque-meta">
                 <span class="feed-stat">
                   <svg
@@ -95,7 +87,7 @@
                     <path
                       d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
                     /></svg
-                  >12
+                  >0
                 </span>
                 <span class="feed-stat">
                   <svg
@@ -111,13 +103,10 @@
                     <polygon
                       points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
                     /></svg
-                  >34
+                  >0
                 </span>
                 <span class="feed-destaque-date">03 jun. 2026</span>
-                <a
-                  href="./pages/notices/noticia.html"
-                  class="feed-destaque-btn"
-                >
+                <a href="#" class="feed-destaque-btn">
                   Ler notícia
                   <svg
                     width="14"
@@ -140,437 +129,8 @@
         <!-- ════ RECENTES ════ -->
         <section class="feed-section">
           <h2 class="feed-section-title">Recentes</h2>
-          <div class="feed-grid" id="feedGrid">
-            <!-- Card 1 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img
-                  src="./images/notices/educacao/noticia1.jpg"
-                  alt="Notícia"
-                />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Notícia Recente 1</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Educação</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >3
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >18
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card 2 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img
-                  src="./images/notices/politica/noticia1.jpg"
-                  alt="Notícia"
-                />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Notícia Recente 2</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Política</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >5
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >22
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card 3 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img src="./images/notices/saude/noticia1.jpg" alt="Notícia" />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Notícia Recente 3</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Saúde</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >7
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >9
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card 4 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img
-                  src="./images/notices/economia/noticia1.jpg"
-                  alt="Notícia"
-                />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Notícia Recente 4</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Economia</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >2
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >15
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card 5 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img
-                  src="./images/notices/mundodotrabalho/noticia1.jpg"
-                  alt="Notícia"
-                />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Notícia Recente 5</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Trabalho</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >4
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >11
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card 6 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img
-                  src="./images/notices/violencia/noticia1.jpg"
-                  alt="Notícia"
-                />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Notícia Recente 6</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Violência</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >6
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >27
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card 7 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img
-                  src="./images/notices/tecnologia/noticia2.jpg"
-                  alt="Notícia"
-                />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Notícia Recente 7</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Tecnologia</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >1
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >8
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card 8 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img
-                  src="./images/notices/educacao/noticia2.jpg"
-                  alt="Notícia"
-                />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Notícia Recente 8</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Educação</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >9
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >30
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-          <!-- /feed-grid -->
+          <!-- Cards gerados dinamicamente pelo feed.js -->
+          <div class="feed-grid" id="feedGrid"></div>
         </section>
 
         <!-- ════ ANÚNCIO ════ -->
@@ -581,220 +141,8 @@
         <!-- ════ MAIS LIDAS ════ -->
         <section class="feed-section" style="margin-top: 28px">
           <h2 class="feed-section-title">Mais Lidas</h2>
-          <div class="feed-grid">
-            <!-- Card mais lida 1 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img
-                  src="./images/notices/politica/noticia2.jpg"
-                  alt="Notícia"
-                />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Mais Lida 1</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Política</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >20
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >87
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card mais lida 2 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img src="./images/notices/saude/noticia2.jpg" alt="Notícia" />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Mais Lida 2</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Saúde</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >14
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >61
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card mais lida 3 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img
-                  src="./images/notices/economia/noticia2.jpg"
-                  alt="Notícia"
-                />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Mais Lida 3</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Economia</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >11
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >55
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card mais lida 4 -->
-            <article class="feed-card">
-              <div class="feed-card-img">
-                <img
-                  src="./images/notices/mundodotrabalho/noticia2.jpg"
-                  alt="Notícia"
-                />
-                <button class="feed-card-star" aria-label="Favoritar">★</button>
-              </div>
-              <div class="feed-card-body">
-                <h3 class="feed-card-title">Título da Mais Lida 4</h3>
-                <div class="feed-card-footer">
-                  <div class="feed-card-tags">
-                    <span class="feed-tag">Autor</span>
-                    <span class="feed-tag">Trabalho</span>
-                  </div>
-                  <div class="feed-card-stats">
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path
-                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                        /></svg
-                      >8
-                    </span>
-                    <span class="feed-stat">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        /></svg
-                      >43
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
+          <!-- Cards gerados dinamicamente pelo feed.js -->
+          <div class="feed-grid" id="maisLidasGrid"></div>
         </section>
       </main>
       <!-- /feed-main -->
@@ -851,10 +199,12 @@
 
         <div class="feed-comment">
           <div class="feed-comment-header">
-            <div class="feed-comment-avatar">N</div>
-            <span class="feed-comment-name">Nome</span>
+            <div class="feed-comment-avatar">A</div>
+            <span class="feed-comment-name">Anthero</span>
           </div>
-          <p class="feed-comment-text">Comentário sobre a notícia</p>
+          <p class="feed-comment-text">
+            A ética na IA é urgente demais pra ser ignorada!
+          </p>
           <div class="feed-comment-actions">
             <button class="feed-comment-btn" aria-label="Curtir">
               <svg
@@ -897,10 +247,12 @@
 
         <div class="feed-comment">
           <div class="feed-comment-header">
-            <div class="feed-comment-avatar">N</div>
-            <span class="feed-comment-name">Nome</span>
+            <div class="feed-comment-avatar">E</div>
+            <span class="feed-comment-name">Emanuely</span>
           </div>
-          <p class="feed-comment-text">Comentário sobre a notícia</p>
+          <p class="feed-comment-text">
+            Soberania nacional começa com educação de qualidade.
+          </p>
           <div class="feed-comment-actions">
             <button class="feed-comment-btn" aria-label="Curtir">
               <svg
@@ -943,10 +295,12 @@
 
         <div class="feed-comment">
           <div class="feed-comment-header">
-            <div class="feed-comment-avatar">N</div>
-            <span class="feed-comment-name">Nome</span>
+            <div class="feed-comment-avatar">L</div>
+            <span class="feed-comment-name">Laiz</span>
           </div>
-          <p class="feed-comment-text">Comentário sobre a notícia</p>
+          <p class="feed-comment-text">
+            Precisamos falar mais sobre saúde mental nas escolas.
+          </p>
           <div class="feed-comment-actions">
             <button class="feed-comment-btn" aria-label="Curtir">
               <svg
@@ -989,10 +343,12 @@
 
         <div class="feed-comment">
           <div class="feed-comment-header">
-            <div class="feed-comment-avatar">N</div>
-            <span class="feed-comment-name">Nome</span>
+            <div class="feed-comment-avatar">H</div>
+            <span class="feed-comment-name">Heitor</span>
           </div>
-          <p class="feed-comment-text">Comentário sobre a notícia</p>
+          <p class="feed-comment-text">
+            A escala 6x1 precisa ser repensada com urgência.
+          </p>
           <div class="feed-comment-actions">
             <button class="feed-comment-btn" aria-label="Curtir">
               <svg
@@ -1037,5 +393,6 @@
     </div>
     <!-- /feed-layout -->
 
+    <script src="./src/scripts/feed.js"></script>
   </body>
 </html>

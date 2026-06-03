@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conecta Jovem — Criar Notícia</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+  </head>
+
+  <body class="feed-body">
+    <!-- ══════════════ NAVBAR ══════════════ -->
+    <nav class="feed-nav">
+      <button class="feed-nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="feed-nav-search">
+        <input type="text" placeholder="" id="searchInput" />
+        <button class="feed-nav-search-btn" aria-label="Buscar">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+      </div>
+      <div class="feed-nav-user">
+        <span class="feed-nav-username">Nome</span>
+        <div class="feed-nav-avatar"><span>N</span></div>
+      </div>
+    </nav>
+
+    <!-- ══════════════ CATEGORIAS ══════════════ -->
+    <div class="feed-categories">
+      <a href="notices/educacao.html" class="feed-cat">Educação</a>
+      <a href="notices/politica.html" class="feed-cat">Política</a>
+      <a href="notices/mundoTrabalho.html" class="feed-cat"
+        >Mundo do Trabalho</a
+      >
+      <a href="notices/tecnologia.html" class="feed-cat">Tecnologia</a>
+      <a href="notices/saude.html" class="feed-cat">Saúde</a>
+      <a href="notices/economia.html" class="feed-cat">Economia</a>
+      <a href="favoritos.html" class="feed-cat">Favoritos</a>
+    </div>
+
+    <!-- ══════════════ EDITOR LAYOUT ══════════════ -->
+    <div class="editor-layout">
+      <!-- ── COLUNA ESQUERDA: formulário ── -->
+      <div class="editor-left">
+        <div class="editor-header">
+          <h1 class="editor-page-title">Criar Notícia</h1>
+          <p class="editor-subtitle">
+            Preencha os campos abaixo para publicar sua notícia.
+          </p>
+        </div>
+
+        <!-- METADADOS -->
+        <div class="editor-meta-block">
+          <!-- Título -->
+          <div class="editor-field">
+            <label class="editor-label" for="noticiaTitulo">Título</label>
+            <input
+              type="text"
+              id="noticiaTitulo"
+              class="editor-input"
+              placeholder="Digite o título da notícia..."
+              maxlength="120"
+            />
+            <span class="editor-char-count" id="tituloCount">0/120</span>
+          </div>
+
+          <!-- Categoria + imagem lado a lado -->
+          <div class="editor-row-2">
+            <div class="editor-field">
+              <label class="editor-label" for="noticiaCategoria"
+                >Categoria</label
+              >
+              <select id="noticiaCategoria" class="editor-select">
+                <option value="">Selecione...</option>
+                <option value="Educação">Educação</option>
+                <option value="Política">Política</option>
+                <option value="Mundo do Trabalho">Mundo do Trabalho</option>
+                <option value="Tecnologia">Tecnologia</option>
+                <option value="Saúde">Saúde</option>
+                <option value="Economia">Economia</option>
+              </select>
+            </div>
+
+            <div class="editor-field">
+              <label class="editor-label" for="noticiaImagem"
+                >Imagem de capa</label
+              >
+              <label
+                class="editor-file-label"
+                id="imagemLabel"
+                for="noticiaImagem"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <span id="imagemNome">Escolher imagem...</span>
+              </label>
+              <input
+                type="file"
+                id="noticiaImagem"
+                accept="image/*"
+                class="editor-file-input"
+              />
+            </div>
+          </div>
+
+          <!-- Preview da imagem de capa -->
+          <div
+            class="editor-cover-preview"
+            id="coverPreview"
+            style="display: none"
+          >
+            <img id="coverImg" src="#" alt="Capa" />
+            <button
+              class="editor-cover-remove"
+              id="coverRemove"
+              aria-label="Remover imagem"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- /editor-meta-block -->
+
+        <!-- BARRA DE FORMATAÇÃO -->
+        <div class="editor-toolbar" id="editorToolbar">
+          <div class="editor-toolbar-group">
+            <button
+              class="editor-tool-btn"
+              data-cmd="bold"
+              title="Negrito (Ctrl+B)"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
+                <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
+              </svg>
+            </button>
+            <button
+              class="editor-tool-btn"
+              data-cmd="italic"
+              title="Itálico (Ctrl+I)"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="19" y1="4" x2="10" y2="4" />
+                <line x1="14" y1="20" x2="5" y2="20" />
+                <line x1="15" y1="4" x2="9" y2="20" />
+              </svg>
+            </button>
+            <button
+              class="editor-tool-btn"
+              data-cmd="underline"
+              title="Sublinhado (Ctrl+U)"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3" />
+                <line x1="4" y1="21" x2="20" y2="21" />
+              </svg>
+            </button>
+            <button
+              class="editor-tool-btn"
+              data-cmd="strikeThrough"
+              title="Tachado"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <path
+                  d="M17.5 6C17.5 4.07 15.43 3 12 3c-3.43 0-5.5 1.07-5.5 3s2.07 3 5.5 3c3.43 0 5.5.93 5.5 3s-2.07 3-5.5 3-5.5-1.07-5.5-3"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="editor-toolbar-sep"></div>
+
+          <div class="editor-toolbar-group">
+            <button
+              class="editor-tool-btn"
+              data-cmd="justifyLeft"
+              title="Alinhar à esquerda"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="15" y2="12" />
+                <line x1="3" y1="18" x2="18" y2="18" />
+              </svg>
+            </button>
+            <button
+              class="editor-tool-btn"
+              data-cmd="justifyCenter"
+              title="Centralizar"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="6" y1="12" x2="18" y2="12" />
+                <line x1="4" y1="18" x2="20" y2="18" />
+              </svg>
+            </button>
+            <button
+              class="editor-tool-btn"
+              data-cmd="justifyRight"
+              title="Alinhar à direita"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="9" y1="12" x2="21" y2="12" />
+                <line x1="6" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+            <button
+              class="editor-tool-btn"
+              data-cmd="justifyFull"
+              title="Justificar"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="editor-toolbar-sep"></div>
+
+          <div class="editor-toolbar-group">
+            <button
+              class="editor-tool-btn"
+              data-cmd="insertUnorderedList"
+              title="Lista com marcadores"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="9" y1="6" x2="20" y2="6" />
+                <line x1="9" y1="12" x2="20" y2="12" />
+                <line x1="9" y1="18" x2="20" y2="18" />
+                <circle cx="4" cy="6" r="1" fill="currentColor" />
+                <circle cx="4" cy="12" r="1" fill="currentColor" />
+                <circle cx="4" cy="18" r="1" fill="currentColor" />
+              </svg>
+            </button>
+            <button
+              class="editor-tool-btn"
+              data-cmd="insertOrderedList"
+              title="Lista numerada"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="10" y1="6" x2="21" y2="6" />
+                <line x1="10" y1="12" x2="21" y2="12" />
+                <line x1="10" y1="18" x2="21" y2="18" />
+                <path d="M4 6h1v4" />
+                <path d="M4 10h2" />
+                <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
+              </svg>
+            </button>
+            <button
+              class="editor-tool-btn"
+              data-cmd="indent"
+              title="Aumentar recuo"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+                <polyline points="7 12 12 8 12 16 7 12" />
+                <line x1="12" y1="12" x2="21" y2="12" />
+              </svg>
+            </button>
+            <button
+              class="editor-tool-btn"
+              data-cmd="outdent"
+              title="Diminuir recuo"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+                <polyline points="12 12 7 8 7 16 12 12" />
+                <line x1="3" y1="12" x2="7" y2="12" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="editor-toolbar-sep"></div>
+
+          <div class="editor-toolbar-group">
+            <!-- Tamanho da fonte -->
+            <select
+              class="editor-tool-select"
+              id="fontSize"
+              title="Tamanho do texto"
+            >
+              <option value="3" selected>Normal</option>
+              <option value="1">Pequeno</option>
+              <option value="4">Médio</option>
+              <option value="5">Grande</option>
+              <option value="6">Extra grande</option>
+            </select>
+
+            <!-- Cor do texto -->
+            <label class="editor-tool-color-wrap" title="Cor do texto">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 20h4l10.5-10.5a1.5 1.5 0 0 0-4-4L4 16v4z" />
+                <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
+              </svg>
+              <input
+                type="color"
+                id="textColor"
+                class="editor-color-input"
+                value="#1f2430"
+                title="Cor do texto"
+              />
+            </label>
+          </div>
+
+          <div class="editor-toolbar-sep"></div>
+
+          <div class="editor-toolbar-group">
+            <button
+              class="editor-tool-btn"
+              data-cmd="undo"
+              title="Desfazer (Ctrl+Z)"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 14 4 9 9 4" />
+                <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
+              </svg>
+            </button>
+            <button
+              class="editor-tool-btn"
+              data-cmd="redo"
+              title="Refazer (Ctrl+Y)"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 14 20 9 15 4" />
+                <path d="M4 20v-7a4 4 0 0 1 4-4h12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- /editor-toolbar -->
+
+        <!-- ÁREA DE TEXTO (contenteditable) -->
+        <div
+          id="editorContent"
+          class="editor-content"
+          contenteditable="true"
+          spellcheck="true"
+          data-placeholder="Comece a escrever sua notícia aqui..."
+        ></div>
+
+        <!-- BARRA DE STATUS: palavras + linhas -->
+        <div class="editor-statusbar">
+          <span class="editor-status-item">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 6h16M4 12h16M4 18h12" />
+            </svg>
+            <span id="wordCount">0</span> palavras
+          </span>
+          <span class="editor-status-sep">·</span>
+          <span class="editor-status-item">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="8" y1="6" x2="21" y2="6" />
+              <line x1="8" y1="12" x2="21" y2="12" />
+              <line x1="8" y1="18" x2="21" y2="18" />
+              <line x1="3" y1="6" x2="3.01" y2="6" />
+              <line x1="3" y1="12" x2="3.01" y2="12" />
+              <line x1="3" y1="18" x2="3.01" y2="18" />
+            </svg>
+            <span id="lineCount">0</span> linhas
+          </span>
+          <span class="editor-status-sep">·</span>
+          <span class="editor-status-item">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="4 7 4 4 20 4 20 7" />
+              <line x1="9" y1="20" x2="15" y2="20" />
+              <line x1="12" y1="4" x2="12" y2="20" />
+            </svg>
+            <span id="charCount">0</span> caracteres
+          </span>
+        </div>
+
+        <!-- AÇÕES FINAIS -->
+        <div class="editor-actions">
+          <button class="editor-btn-secondary" id="btnPreview">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            Pré-visualizar
+          </button>
+          <button class="editor-btn-primary" id="btnPublicar">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+            Publicar Notícia
+          </button>
+        </div>
+      </div>
+      <!-- /editor-left -->
+
+      <!-- ── COLUNA DIREITA: pré-visualização ── -->
+      <aside class="editor-right" id="editorPreview">
+        <div class="editor-preview-header">
+          <h2 class="editor-preview-label">Pré-visualização</h2>
+          <button
+            class="editor-preview-close"
+            id="btnClosePreview"
+            aria-label="Fechar"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="editor-preview-card">
+          <!-- Imagem de capa -->
+          <div class="editor-preview-cover" id="previewCover">
+            <div
+              class="editor-preview-cover-placeholder"
+              id="previewCoverPlaceholder"
+            >
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
+              </svg>
+              <span>Sem imagem de capa</span>
+            </div>
+            <img
+              id="previewCoverImg"
+              src="#"
+              alt="Capa"
+              style="display: none"
+            />
+          </div>
+
+          <div class="editor-preview-body">
+            <!-- Categoria -->
+            <div class="editor-preview-tags" id="previewTags">
+              <span
+                class="feed-tag"
+                id="previewCategoria"
+                style="display: none"
+              ></span>
+            </div>
+
+            <!-- Título -->
+            <h3 class="editor-preview-title" id="previewTitulo">
+              Título da notícia
+            </h3>
+
+            <!-- Texto -->
+            <div class="editor-preview-text" id="previewTexto">
+              <p style="color: #aaa; font-style: italic">
+                O conteúdo da notícia aparecerá aqui...
+              </p>
+            </div>
+
+            <!-- Stats (decorativo) -->
+            <div class="editor-preview-stats">
+              <span class="feed-stat">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  /></svg
+                >0
+              </span>
+              <span class="feed-stat">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  /></svg
+                >0
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- /editor-preview-card -->
+      </aside>
+    </div>
+    <!-- /editor-layout -->
+
+    <script src="../scripts/postNoticia.js"></script>
+  </body>
+</html>

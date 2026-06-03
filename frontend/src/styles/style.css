@@ -1665,3 +1665,596 @@ textarea::-webkit-scrollbar-thumb {
     -webkit-line-clamp: 2;
   }
 }
+/* ═══════════════════════════════════════════
+   CRIAR NOTÍCIA — adicione ao final do style.css
+═══════════════════════════════════════════ */
+
+/* ── Layout geral ── */
+.editor-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 28px 60px;
+  width: 100%;
+  position: relative;
+}
+
+/* ── Coluna esquerda (formulário + editor) ── */
+.editor-left {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.editor-header {
+  margin-bottom: 22px;
+}
+
+.editor-page-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1f2430;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 4px;
+}
+
+.editor-subtitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: #888;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ── Bloco de metadados ── */
+.editor-meta-block {
+  background: #f4f2ee;
+  border-radius: 12px 12px 0 0;
+  padding: 20px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-bottom: 1px solid #e0ddd7;
+}
+
+.editor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.editor-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.editor-input {
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  background: #fff;
+  color: #1f2430;
+  outline: none;
+  transition: box-shadow 0.15s;
+}
+
+.editor-input:focus {
+  box-shadow: 0 0 0 2px #1746a2;
+}
+
+.editor-input::placeholder {
+  color: #ccc;
+  font-weight: 400;
+}
+
+.editor-char-count {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #bbb;
+  font-family: "Montserrat", sans-serif;
+  pointer-events: none;
+}
+
+/* Linha Categoria + Imagem */
+.editor-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.editor-select {
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  background: #fff;
+  color: #1f2430;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: box-shadow 0.15s;
+}
+
+.editor-select:focus {
+  box-shadow: 0 0 0 2px #1746a2;
+}
+
+/* Botão de upload de imagem */
+.editor-file-input {
+  display: none;
+}
+
+.editor-file-label {
+  height: 40px;
+  border-radius: 6px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  color: #888;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.editor-file-label:hover {
+  background: #edeae4;
+  color: #1746a2;
+}
+
+.editor-file-label svg {
+  flex-shrink: 0;
+}
+
+/* Preview da capa */
+.editor-cover-preview {
+  position: relative;
+  width: 100%;
+  max-height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.editor-cover-preview img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.editor-cover-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.55);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.editor-cover-remove:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+/* ── Barra de formatação ── */
+.editor-toolbar {
+  background: #f4f2ee;
+  border-bottom: 1px solid #e0ddd7;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.editor-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.editor-toolbar-sep {
+  width: 1px;
+  height: 22px;
+  background: #d0ccc4;
+  margin: 0 6px;
+  flex-shrink: 0;
+}
+
+.editor-tool-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #555;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.12s,
+    color 0.12s;
+  flex-shrink: 0;
+}
+
+.editor-tool-btn:hover {
+  background: #e0ddd7;
+  color: #1746a2;
+}
+
+.editor-tool-btn--active {
+  background: #1746a2;
+  color: #fff;
+}
+
+.editor-tool-btn--active:hover {
+  background: #11357c;
+  color: #fff;
+}
+
+.editor-tool-select {
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+  outline: none;
+}
+
+.editor-tool-color-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.12s;
+}
+
+.editor-tool-color-wrap:hover {
+  background: #e0ddd7;
+}
+
+.editor-color-input {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  opacity: 0;
+  cursor: pointer;
+  border: none;
+}
+
+/* ── Área de texto contenteditable ── */
+.editor-content {
+  min-height: 320px;
+  background: #fff;
+  padding: 20px 24px;
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+  color: #1f2430;
+  line-height: 1.75;
+  outline: none;
+  border-radius: 0;
+  overflow-y: auto;
+  transition: box-shadow 0.15s;
+}
+
+.editor-content:focus {
+  box-shadow: inset 0 0 0 2px #1746a2;
+}
+
+/* Placeholder quando vazio */
+.editor-content:empty::before {
+  content: attr(data-placeholder);
+  color: #ccc;
+  pointer-events: none;
+  font-weight: 400;
+}
+
+/* ── Barra de status ── */
+.editor-statusbar {
+  background: #f4f2ee;
+  border-top: 1px solid #e0ddd7;
+  border-radius: 0 0 12px 12px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.editor-status-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  font-family: "Montserrat", sans-serif;
+}
+
+.editor-status-sep {
+  color: #c8c4bc;
+  font-size: 14px;
+}
+
+/* ── Botões de ação ── */
+.editor-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.editor-btn-primary,
+.editor-btn-secondary {
+  height: 44px;
+  border: none;
+  border-radius: 6px;
+  padding: 0 22px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    background 0.18s,
+    opacity 0.18s;
+}
+
+.editor-btn-primary {
+  background: #1746a2;
+  color: #fff;
+}
+
+.editor-btn-primary:hover {
+  background: #11357c;
+}
+
+.editor-btn-secondary {
+  background: #f4f2ee;
+  color: #1746a2;
+}
+
+.editor-btn-secondary:hover {
+  background: #e0ddd7;
+}
+
+/* ── Coluna direita: pré-visualização ── */
+.editor-right {
+  width: 320px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 68px;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  display: none; /* oculta por padrão; exibido via JS */
+  flex-direction: column;
+  gap: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #c8c4bc transparent;
+}
+
+.editor-right--visible {
+  display: flex;
+}
+
+.editor-right::-webkit-scrollbar {
+  width: 4px;
+}
+
+.editor-right::-webkit-scrollbar-thumb {
+  background: #c8c4bc;
+  border-radius: 4px;
+}
+
+.editor-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.editor-preview-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.editor-preview-close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #aaa;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.editor-preview-close:hover {
+  color: #1f2430;
+}
+
+.editor-preview-card {
+  background: #f4f2ee;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Capa */
+.editor-preview-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #ccc;
+  background-image:
+    linear-gradient(45deg, #bbb 25%, transparent 25%),
+    linear-gradient(-45deg, #bbb 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #bbb 75%),
+    linear-gradient(-45deg, transparent 75%, #bbb 75%);
+  background-size: 14px 14px;
+  background-position:
+    0 0,
+    0 7px,
+    7px -7px,
+    -7px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.editor-preview-cover-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #aaa;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+
+.editor-preview-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Corpo */
+.editor-preview-body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.editor-preview-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.editor-preview-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1f2430;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.editor-preview-text {
+  font-size: 12px;
+  font-weight: 400;
+  color: #555;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
+  max-height: 180px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+
+.editor-preview-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid #e0ddd7;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 900px) {
+  .editor-layout {
+    flex-direction: column;
+    padding: 20px 16px 40px;
+  }
+
+  .editor-right {
+    width: 100%;
+    position: static;
+    max-height: none;
+  }
+
+  .editor-right--visible {
+    display: flex;
+  }
+
+  .editor-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-toolbar {
+    gap: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .editor-toolbar-sep {
+    display: none;
+  }
+
+  .editor-actions {
+    flex-direction: column;
+  }
+
+  .editor-btn-primary,
+  .editor-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
