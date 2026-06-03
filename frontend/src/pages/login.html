@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conecta Jovem — Login</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+  </head>
+
+  <body>
+    <header class="header"><h1>Conecta Jovem</h1></header>
+
+    <main class="container">
+      <!-- ── ESQUERDO ── -->
+      <section class="left">
+        <article class="logo-area">
+          <img
+            src="../images/conecta-jovem.png"
+            alt="Conecta Jovem"
+            class="logo-img"
+          />
+        </article>
+      </section>
+
+      <!-- ── DIREITO ── -->
+      <section class="right">
+        <article class="form-box">
+          <h2 class="login-welcome">Bem-vindo de volta!</h2>
+
+          <form id="loginForm">
+            <div class="input-group">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" placeholder="Nome" />
+            </div>
+
+            <div class="input-group">
+              <label for="senha">Senha</label>
+              <input type="password" id="senha" placeholder="Senha" />
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+          </form>
+
+          <p class="login-register-text">
+            Não tem uma conta?
+            <a href="cadastro.html" class="login-register-link">Cadastre-se</a>
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer"><p>© 2026 Conecta Jovem</p></footer>
+
+    <script src="../scripts/login.js"></script>
+  </body>
+</html>
