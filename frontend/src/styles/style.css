@@ -592,3 +592,477 @@ textarea::-webkit-scrollbar-thumb {
 .login-register-link:hover {
   text-decoration: underline;
 }
+
+/* Reset overflow para páginas de feed (diferente do perfil/login) */
+.feed-body {
+  overflow: auto;
+  background: #edeae4;
+}
+
+/* ── NAVBAR ── */
+.feed-nav {
+  width: 100%;
+  height: 48px;
+  background: #1746a2;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.feed-nav-hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.feed-nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.feed-nav-search {
+  flex: 1;
+  max-width: 340px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 30px;
+}
+
+.feed-nav-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-size: 13px;
+  font-family: "Montserrat", sans-serif;
+  background: transparent;
+  color: #333;
+  height: 100%;
+}
+
+.feed-nav-search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 10px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.feed-nav-search-btn:hover {
+  color: #1746a2;
+}
+
+.feed-nav-user {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feed-nav-username {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+}
+
+.feed-nav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1746a2;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  flex-shrink: 0;
+}
+
+/* ── CATEGORIAS ── */
+.feed-categories {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 24px;
+  border-bottom: 2px solid #d0ccc4;
+  background: #edeae4;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.feed-categories::-webkit-scrollbar {
+  display: none;
+}
+
+.feed-cat {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  color: #1f2430;
+  text-decoration: none;
+  padding: 14px 20px;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.feed-cat:hover {
+  color: #1746a2;
+}
+
+.feed-cat--active {
+  color: #1f2430;
+  border-bottom-color: #1f2430;
+  text-decoration: underline;
+}
+
+/* ── LAYOUT PRINCIPAL ── */
+.feed-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px 24px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── CONTEÚDO PRINCIPAL ── */
+.feed-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.feed-section-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1f2430;
+  margin-bottom: 18px;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ── GRID DE CARDS ── */
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+/* ── CARD DE NOTÍCIA ── */
+.feed-card {
+  background: #f4f2ee;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.18s,
+    box-shadow 0.18s;
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagem do card com placeholder */
+.feed-card-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #ccc;
+  background-image:
+    linear-gradient(45deg, #bbb 25%, transparent 25%),
+    linear-gradient(-45deg, #bbb 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #bbb 75%),
+    linear-gradient(-45deg, transparent 75%, #bbb 75%);
+  background-size: 14px 14px;
+  background-position:
+    0 0,
+    0 7px,
+    7px -7px,
+    -7px 0px;
+  overflow: hidden;
+}
+
+.feed-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.feed-card-img img[src="#"],
+.feed-card-img img:not([src]),
+.feed-card-img img[src=""] {
+  opacity: 0;
+}
+
+/* Botão estrela sobre a imagem */
+.feed-card-star {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  color: #ccc;
+  transition:
+    color 0.15s,
+    transform 0.15s;
+  padding: 0;
+}
+
+.feed-card-star--active {
+  color: #e8a020;
+}
+
+.feed-card-star:hover {
+  transform: scale(1.2);
+}
+
+/* Corpo do card */
+.feed-card-body {
+  padding: 10px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.feed-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1f2430;
+  line-height: 1.35;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Footer do card: tags + stats */
+.feed-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.feed-card-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.feed-tag {
+  background: #1746a2;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.feed-card-stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.feed-stat {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1f2430;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ── ANÚNCIO ── */
+.feed-ad {
+  background: #e0ddd7;
+  border-radius: 12px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  font-family: "Montserrat", sans-serif;
+  width: 60%;
+}
+
+/* ── SIDEBAR COMENTÁRIOS ── */
+.feed-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: #f4f2ee;
+  border-radius: 12px;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: sticky;
+  top: 68px;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #c8c4bc transparent;
+}
+
+.feed-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.feed-sidebar::-webkit-scrollbar-thumb {
+  background: #c8c4bc;
+  border-radius: 4px;
+}
+
+.feed-sidebar-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #1f2430;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Comentário individual */
+.feed-comment {
+  background: #ebe8e2;
+  border-radius: 8px;
+  padding: 10px 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.feed-comment-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.feed-comment-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #555;
+  font-family: "Montserrat", sans-serif;
+  flex-shrink: 0;
+}
+
+.feed-comment-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1f2430;
+  font-family: "Montserrat", sans-serif;
+}
+
+.feed-comment-text {
+  font-size: 11px;
+  font-weight: 400;
+  color: #555;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.feed-comment-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.feed-comment-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.feed-comment-btn:hover,
+.feed-comment-btn--active {
+  color: #1746a2;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 1024px) {
+  .feed-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .feed-sidebar {
+    width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feed-layout {
+    flex-direction: column;
+    padding: 16px;
+  }
+  .feed-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .feed-sidebar {
+    width: 100%;
+    position: static;
+    max-height: none;
+  }
+  .feed-ad {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .feed-grid {
+    grid-template-columns: 1fr;
+  }
+}
