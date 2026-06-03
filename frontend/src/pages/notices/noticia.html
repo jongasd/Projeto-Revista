@@ -44,8 +44,118 @@
         <div class="feed-nav-avatar" id="navAvatar"><span>N</span></div>
       </div>
     </nav>
+            <!-- OVERLAY (escurece o fundo) -->
+    <div class="hbg-overlay" id="hbgOverlay"></div>
 
-    <!-- ══════════════ CATEGORIAS ══════════════ -->
+    <!-- DRAWER (painel lateral) -->
+    <aside class="hbg-drawer" id="hbgDrawer" aria-hidden="true">
+      <!-- Cabeçalho do drawer -->
+      <div class="hbg-drawer-header">
+        <span class="hbg-drawer-logo">Conecta Jovem</span>
+        <button class="hbg-close" id="hbgClose" aria-label="Fechar menu">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Itens de navegação -->
+      <nav class="hbg-nav">
+        <a href="../postNoticia.html" class="hbg-item">
+          <span class="hbg-item-icon">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </span>
+          Adicionar uma Produção
+        </a>
+
+        <a href="../perfil_aluno.html" class="hbg-item">
+          <span class="hbg-item-icon">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </span>
+          Perfil
+        </a>
+
+        <a href="../turma.html" class="hbg-item">
+          <span class="hbg-item-icon">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </span>
+          Ver Turma
+        </a>
+
+        <!-- Separador antes de "Sair" -->
+        <div class="hbg-sep"></div>
+
+        <button class="hbg-item hbg-item--danger" id="hbgLogout">
+          <span class="hbg-item-icon">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+          </span>
+          Sair da Conta
+        </button>
+      </nav>
+    </aside>
+    <!-- /MENU HAMBURGUER -->
+    <!-- ══════════════ CATEGORIAS ══════════════ --> 
     <div class="feed-categories">
       <a href="educacao.html" class="feed-cat feed-cat--active">Educação</a>
       <a href="politica.html" class="feed-cat">Política</a>
@@ -285,5 +395,6 @@
     <!-- /noticia-layout -->
 
     <script src="../../scripts/noticia.js"></script>
+    <script src="../../scripts/hamburguer.js"></script>
   </body>
 </html>

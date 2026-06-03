@@ -2258,3 +2258,161 @@ textarea::-webkit-scrollbar-thumb {
     justify-content: center;
   }
 }
+/* ═══════════════════════════════════════════
+   MENU HAMBURGUER — cole no final do style.css
+═══════════════════════════════════════════ */
+
+/* ── Overlay (fundo escurecido) ── */
+.hbg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+
+.hbg-overlay--visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Drawer (painel lateral) ── */
+.hbg-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 270px;
+  height: 100vh;
+  background: #1a1e2a;
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+}
+
+.hbg-drawer--open {
+  transform: translateX(0);
+}
+
+/* ── Cabeçalho do drawer ── */
+.hbg-drawer-header {
+  height: 56px;
+  background: #1746a2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  flex-shrink: 0;
+}
+
+.hbg-drawer-logo {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.hbg-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+.hbg-close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Navegação interna ── */
+.hbg-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Item de menu ── */
+.hbg-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  color: #c8cad4;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition:
+    background 0.15s,
+    color 0.15s;
+  border-left: 3px solid transparent;
+}
+
+.hbg-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border-left-color: #1746a2;
+}
+
+/* Ícone de cada item */
+.hbg-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.hbg-item:hover .hbg-item-icon {
+  background: rgba(23, 70, 162, 0.45);
+}
+
+/* ── Separador ── */
+.hbg-sep {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 8px 16px;
+}
+
+/* ── Item "Sair" (vermelho) ── */
+.hbg-item--danger {
+  color: #f87171;
+}
+
+.hbg-item--danger:hover {
+  background: rgba(248, 113, 113, 0.08);
+  color: #fca5a5;
+  border-left-color: #f87171;
+}
+
+.hbg-item--danger .hbg-item-icon {
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.hbg-item--danger:hover .hbg-item-icon {
+  background: rgba(248, 113, 113, 0.2);
+}
