@@ -18,7 +18,7 @@ const CATALOGO = {
       {
         id: "edu-01",
         titulo: "Carta de Reclamação",
-        autor: "Laiz de Souza Vaz",
+        autor: "Lais de Souza Vaz",
         data: "11 Mai 2026",
         tempLeitura: 4,
         arquivo: "../../documents/educacao/laiz_vaz_carta_pessoal_educacao.pdf",

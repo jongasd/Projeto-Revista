@@ -23,5 +23,13 @@
   "license": "ISC",
   "description": "API REST desenvolvida em **Node.js + Express** com arquitetura **MVC**, aplicando princípios de **Clean Code** e **SOLID**.",
   "type": "commonjs",
+<<<<<<< Updated upstream
   "devDependencies": {}
+=======
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.1",
+    "globals": "^17.5.0"
+  }
+>>>>>>> Stashed changes
 }
