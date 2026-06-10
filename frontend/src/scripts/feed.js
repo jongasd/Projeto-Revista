@@ -63,7 +63,7 @@ const NOTICIAS = [
   {
     id: "educacao-1",
     titulo: "Carta Pessoal: O Futuro da Educação",
-    autor: "Laiz Vaz",
+    autor: "Lais Vaz",
     categoria: "Educação",
     categoriaSlug: "educacao",
     img: "./src/images/notices/educacao/Laiz.png",
