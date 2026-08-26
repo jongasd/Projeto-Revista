@@ -38,7 +38,7 @@ const NOTICIAS = [
     autor: "Pietro Guedes de Oliveira",
     categoria: "Tecnologia",
     categoriaSlug: "tecnologia",
-    img: "./src/images/notices/tecnologia/Pietro", // sem extensão — fallback tratado
+    img: "./src/images/notices/tecnologia/Pietro.png", // sem extensão — fallback tratado
     pdf: "./src/documents/tecnologia/Pietro_Guedes_de_Oliveira_CartaAberta_IAeEticaDigital.pdf",
     comentarios: 3,
     favoritos: 11,
