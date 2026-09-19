@@ -107,6 +107,7 @@ ALTER TABLE noticia ADD COLUMN imagem_capa VARCHAR(500) NULL AFTER conteudo;
 -- 1) Ajustes de schema (rodar uma vez só)
 ALTER TABLE noticia MODIFY COLUMN descricao VARCHAR(255) NOT NULL;
 ALTER TABLE noticia ADD COLUMN autor_nome VARCHAR(150) NULL COMMENT 'Nome do autor original do texto, quando ele não é um usuário cadastrado na plataforma';
+ALTER TABLE noticia ADD COLUMN arquivo_pdf VARCHAR(500) NULL COMMENT 'Caminho do PDF original, usado pelo visualizador em noticia.html';
 
 -- 2) Usuário 'sistema' — dono técnico das notícias migradas.
 -- Os autores reais (alunos que escreveram os textos) não são
@@ -117,7 +118,7 @@ INSERT INTO usuario (nome, turma, email, rm, senha, tipo, descricao) VALUES ('Ac
 SET @acervo_usuario_id = LAST_INSERT_ID();
 
 -- 3) Notícias (conteúdo extraído de verdade dos PDFs originais)
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Carta de Reclamação', 'Educação', 'Uma carta íntima sobre as expectativas, frustrações e esperanças de quem vive a educação brasileira por dentro.', 'Carta de Reclamação: Você é o pai/mãe de uma criança autista e deve escrever
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Carta de Reclamação', 'Educação', 'Uma carta íntima sobre as expectativas, frustrações e esperanças de quem vive a educação brasileira por dentro.', 'Carta de Reclamação: Você é o pai/mãe de uma criança autista e deve escrever
 uma carta dirigida à diretoria de uma escola particular. Seu texto deve
 obrigatoriamente: a) contextualizar a ilegalidade da recusa de matrícula baseada na
 deficiência; b) apresentar dois argumentos sobre os benefícios da inclusão para toda a
@@ -158,8 +159,8 @@ cometido .
 
 Atenciosamente,
 
-Mãe do aluno.', 'images/notices/educacao/Laiz.png', 'Lais de Souza Vaz'); -- origem: educacao/laiz_vaz_carta_pessoal_educacao.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'MANIFESTO PELA EDUCAÇÃO INCLUSIVA', 'Educação', 'É preciso exigir mais do sistema. Este manifesto convoca estudantes, professores e famílias a lutarem por escolas melhores.', 'Manifesto: Você é representante de um Fórum de Educação Especial e deve escrever
+Mãe do aluno.', 'images/notices/educacao/Laiz.png', 'Lais de Souza Vaz', 'educacao/laiz_vaz_carta_pessoal_educacao.pdf'); -- origem: educacao/laiz_vaz_carta_pessoal_educacao.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'MANIFESTO PELA EDUCAÇÃO INCLUSIVA', 'Educação', 'É preciso exigir mais do sistema. Este manifesto convoca estudantes, professores e famílias a lutarem por escolas melhores.', 'Manifesto: Você é representante de um Fórum de Educação Especial e deve escrever
 um manifesto dirigido ao Ministério da Educação. Seu texto deve obrigatoriamente: a)
 contextualizar as barreiras arquitetônicas e pedagógicas nas escolas públicas; b)
 apresentar dois argumentos sobre a importância do investimento em salas de recursos
@@ -207,8 +208,8 @@ seja plena para todos.
 
 
 
-Representantes do Fórum de Educação Especial', 'images/notices/educacao/Leticia.png', 'Letícia Parentella Sanduchi'); -- origem: educacao/leticia_parentella-sanduchi_manifesto_educacao.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Depoimento', 'Educação', 'Cada sala de aula carrega histórias invisíveis. Este depoimento revela o que os números do IDEB não conseguem contar.', 'NOME: María Julia Garnham Ferreira
+Representantes do Fórum de Educação Especial', 'images/notices/educacao/Leticia.png', 'Letícia Parentella Sanduchi', 'educacao/leticia_parentella-sanduchi_manifesto_educacao.pdf'); -- origem: educacao/leticia_parentella-sanduchi_manifesto_educacao.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Depoimento', 'Educação', 'Cada sala de aula carrega histórias invisíveis. Este depoimento revela o que os números do IDEB não conseguem contar.', 'NOME: María Julia Garnham Ferreira
 
 
 
@@ -249,8 +250,8 @@ estudantes com deficiência visual. Também peço aos colegas que não deixem
 mochilas espalhadas pelo chão, pois isso representa um grande risco de acidentes.
 Pequenas atitudes podem parecer simples, mas fazem uma enorme diferença na
 construção de uma escola mais inclusiva, acessível e humana. Conto com o apoio de
-todos nessa caminhada.', 'images/notices/educacao/Maria_julia.png', 'Maria Júlia Garnham Ferreira'); -- origem: educacao/Maria_Julia_Garnham_Ferreira_Depoimento_Educação.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Discurso', 'Educação', 'Educação não é privilégio, é direito — e este discurso não deixa ninguém esquecer disso.', 'Discurso: Você é uma professora de Libras e deve escrever um discurso dirigido aos
+todos nessa caminhada.', 'images/notices/educacao/Maria_julia.png', 'Maria Júlia Garnham Ferreira', 'educacao/Maria_Julia_Garnham_Ferreira_Depoimento_Educação.pdf'); -- origem: educacao/Maria_Julia_Garnham_Ferreira_Depoimento_Educação.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Discurso', 'Educação', 'Educação não é privilégio, é direito — e este discurso não deixa ninguém esquecer disso.', 'Discurso: Você é uma professora de Libras e deve escrever um discurso dirigido aos
 formandos de uma universidade. Seu texto deve obrigatoriamente: a) contextualizar a
 barreira linguística enfrentada pela comunidade surda; b) apresentar dois argumentos
 sobre a comunicação como direito humano fundamental; e c) desafiar os novos
@@ -292,8 +293,8 @@ transformar conhecimento em ação. Não basta entender a importância da
 acessibilidade, é preciso colocá-la em prática no dia a dia e nas escolhas profissionais.
 Em qualquer área, vocês podem ajudar a construir espaços mais inclusivos, onde a
 comunicação deixa de ser uma barreira. O futuro depende das suas decisões,
-escolham incluir e garantir que todos tenham voz e espaço.', 'images/notices/educacao/Sofia.png', 'Sofia Marcolongo dos Santos'); -- origem: educacao/sofia_marcolongo_dos_santos_discurso_educacao.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Discurso Soberania Nacional', 'Política', 'O que significa ser soberano hoje? Um discurso contundente sobre autonomia nacional e os desafios da geopolítica contemporânea.', 'NOME: Emanuely Macedo Padovan
+escolham incluir e garantir que todos tenham voz e espaço.', 'images/notices/educacao/Sofia.png', 'Sofia Marcolongo dos Santos', 'educacao/sofia_marcolongo_dos_santos_discurso_educacao.pdf'); -- origem: educacao/sofia_marcolongo_dos_santos_discurso_educacao.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Discurso Soberania Nacional', 'Política', 'O que significa ser soberano hoje? Um discurso contundente sobre autonomia nacional e os desafios da geopolítica contemporânea.', 'NOME: Emanuely Macedo Padovan
 DATA: 11/05/2026
 
 
@@ -328,8 +329,8 @@ ser dado exatamente pela maneira que o estado brasileiro defende o poder do diá
 a resolução de desentendimentos ou sanções. Então, a dita “fragilidade” que muitos apontam para o país
 funciona como uma máscara para disfarçar essa potência nacional.
 
-       Obrigado a todos pela atenção!', 'images/notices/politica/Emanuely.png', 'Emanuely Macedo Padovan'); -- origem: politica/Emanuely_Macedo_Padovan_Discurso_SoberaniaNacional.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Carta Aberta Soberania Nacional', 'Política', 'Uma carta aberta dirigida aos líderes políticos: soberania começa nas decisões do dia a dia, não apenas nos discursos.', 'Nome: Lívia Hermano
+       Obrigado a todos pela atenção!', 'images/notices/politica/Emanuely.png', 'Emanuely Macedo Padovan', 'politica/Emanuely_Macedo_Padovan_Discurso_SoberaniaNacional.pdf'); -- origem: politica/Emanuely_Macedo_Padovan_Discurso_SoberaniaNacional.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Carta Aberta Soberania Nacional', 'Política', 'Uma carta aberta dirigida aos líderes políticos: soberania começa nas decisões do dia a dia, não apenas nos discursos.', 'Nome: Lívia Hermano
 
 Data: 11/05
 
@@ -373,8 +374,8 @@ além de colaborar para a construção de relações internacionais mais justas.
 
 Em busca de melhorias,
 
-                                              Estudantes de Relações Internacionais', 'images/notices/politica/Livia.png', 'Livia Hermano'); -- origem: politica/Livia_Hermano_Carta_Aberta_SoberaniaNacional.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Depoimento Soberania Nacional', 'Política', 'Quando uma jovem decide se envolver com política, o que ela encontra? Um depoimento honesto sobre participação e decepção.', 'NOME: Yasmin Vitória do Nascimento Ramos, Nº32
+                                              Estudantes de Relações Internacionais', 'images/notices/politica/Livia.png', 'Livia Hermano', 'politica/Livia_Hermano_Carta_Aberta_SoberaniaNacional.pdf'); -- origem: politica/Livia_Hermano_Carta_Aberta_SoberaniaNacional.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Depoimento Soberania Nacional', 'Política', 'Quando uma jovem decide se envolver com política, o que ela encontra? Um depoimento honesto sobre participação e decepção.', 'NOME: Yasmin Vitória do Nascimento Ramos, Nº32
 
 DATA: 11/ 05/26
 
@@ -423,8 +424,8 @@ forneceu estabilidade e o acolhimento necessário para mim naquele momento, alé
 do mais importante, esperança. Desejo que isso sirva de aprendizado para aqueles que
 possuem uma visão de indiferença com o próximo e que, um dia, não seja mais preciso
 que outros seres humanos passem por essa mesma situação, tendo seus direitos e
-liberdades assegurados.', 'images/notices/politica/Yasmin.png', 'Yasmin Vitória do Nascimento Ramos'); -- origem: politica/Yasmin_Vitoria_do_Nascimento_Ramos_Depoimento_SoberaniaNacional.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'MANIFESTO DO COLETIVO DE ARTISTAS VISUAIS PARA AS PLATAFORMAS DIGITAIS', 'Tecnologia', 'Uma análise crítica sobre os limites éticos da inteligência artificial e os desafios do mundo digital para a nova geração.', 'MANIFESTO DO COLETIVO DE ARTISTAS VISUAIS PARA AS PLATAFORMAS
+liberdades assegurados.', 'images/notices/politica/Yasmin.png', 'Yasmin Vitória do Nascimento Ramos', 'politica/Yasmin_Vitoria_do_Nascimento_Ramos_Depoimento_SoberaniaNacional.pdf'); -- origem: politica/Yasmin_Vitoria_do_Nascimento_Ramos_Depoimento_SoberaniaNacional.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'MANIFESTO DO COLETIVO DE ARTISTAS VISUAIS PARA AS PLATAFORMAS DIGITAIS', 'Tecnologia', 'Uma análise crítica sobre os limites éticos da inteligência artificial e os desafios do mundo digital para a nova geração.', 'MANIFESTO DO COLETIVO DE ARTISTAS VISUAIS PARA AS PLATAFORMAS
 DIGITAIS
 Nós, artistas visuais, queremos falar diretamente com as plataformas de inteligência artificial
 e plataformas digitais que criam imagens. Diante do avanço do mundo digital, entendemos
@@ -461,8 +462,8 @@ Portanto, não aceitaremos uma sociedade que ignore o valor da arte e permita o 
 irresponsável de imagens e obras sem autorização. Continuaremos lutando até que artistas
 recebam reconhecimento, respeito e remuneração justa pelas suas criações.
 
-Coletivo de Artistas Visuais', 'images/notices/tecnologia/Anthero.png', 'Anthero Franco Sprana'); -- origem: tecnologia/Anthero_Franco_Sprana_Manifesto_Ia_e_Etica_Digital.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Discurso - Cybercrime', 'Tecnologia', 'Os crimes digitais crescem em ritmo acelerado — e os jovens estão na linha de frente tanto como vítimas quanto como protagonistas da mudança.', 'Discurso - Cybercrime
+Coletivo de Artistas Visuais', 'images/notices/tecnologia/Anthero.png', 'Anthero Franco Sprana', 'tecnologia/Anthero_Franco_Sprana_Manifesto_Ia_e_Etica_Digital.pdf'); -- origem: tecnologia/Anthero_Franco_Sprana_Manifesto_Ia_e_Etica_Digital.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Discurso - Cybercrime', 'Tecnologia', 'Os crimes digitais crescem em ritmo acelerado — e os jovens estão na linha de frente tanto como vítimas quanto como protagonistas da mudança.', 'Discurso - Cybercrime
 
 DISCURSO
 
@@ -486,8 +487,8 @@ uma vez por todas.
 Devemos promover mais segurança nas redes sociais, criar meios de verificação de idade
 para proteger crianças e adolescentes e aplicar punições mais severas para quem cometer
 crimes virtuais. Além disso, instituições devem acolher e ajudar as pessoas que sofreram
-esses atos, garantindo segurança e bem-estar para todos.', 'images/notices/tecnologia/Enzo.png', 'Enzo Thomaz de Jesus'); -- origem: tecnologia/Enzo_Thomaz_de_Jesus_Discurso_Cybercrime.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Carta aberta aos desenvolvedores do ChatGPT', 'Tecnologia', 'Uma carta aberta para quem desenvolve, regula e usa inteligência artificial: precisamos de ética antes de velocidade.', '11 de maio de 2026.
+esses atos, garantindo segurança e bem-estar para todos.', 'images/notices/tecnologia/Enzo.png', 'Enzo Thomaz de Jesus', 'tecnologia/Enzo_Thomaz_de_Jesus_Discurso_Cybercrime.pdf'); -- origem: tecnologia/Enzo_Thomaz_de_Jesus_Discurso_Cybercrime.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Carta aberta aos desenvolvedores do ChatGPT', 'Tecnologia', 'Uma carta aberta para quem desenvolve, regula e usa inteligência artificial: precisamos de ética antes de velocidade.', '11 de maio de 2026.
 
 Carta aberta aos desenvolvedores do ChatGPT.
 
@@ -524,8 +525,8 @@ própria capacidade.
 
 Atenciosamente,
 
-Professor do Ensino Médio', 'images/notices/tecnologia/Pietro.png', 'Pietro Guedes de Oliveira'); -- origem: tecnologia/Pietro_Guedes_de_Oliveira_CartaAberta_IAeEticaDigital.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Depoimento', 'Tecnologia', 'Um relato pessoal de quem viveu as consequências do crime digital e decidiu transformar a experiência em alerta coletivo.', 'Nome: Thiago Tavares de Melo | N° 29 | 3° Ano A
+Professor do Ensino Médio', 'images/notices/tecnologia/Pietro.png', 'Pietro Guedes de Oliveira', 'tecnologia/Pietro_Guedes_de_Oliveira_CartaAberta_IAeEticaDigital.pdf'); -- origem: tecnologia/Pietro_Guedes_de_Oliveira_CartaAberta_IAeEticaDigital.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Depoimento', 'Tecnologia', 'Um relato pessoal de quem viveu as consequências do crime digital e decidiu transformar a experiência em alerta coletivo.', 'Nome: Thiago Tavares de Melo | N° 29 | 3° Ano A
 
 
 
@@ -565,8 +566,8 @@ com o intuito de alertar e educar as pessoas sobre os perigos da internet, por m
 anúncios, discursos e notícias vindos principalmente por parte do governo, mas
 também de instituições de tecnologia como a META, ou até mesmo um relato como o
 meu. Lembrem-se de serem cuidadosos e que ter cuidado nos dias de hoje nunca é
-exagero, mas sim uma necessidade, acreditem, pois, aprendi da pior forma.', 'images/notices/tecnologia/Thiago.png', 'Thiago Tavares de Melo'); -- origem: tecnologia/Thiago_Tavares_de_Melo_Depoimento_Cybercrime.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Carta de Reclamação', 'Saúde', 'Filas, descaso e falta de recursos: uma carta que denuncia o que muitos vivem mas poucos dizem em voz alta.', 'Carta de Reclamação: Você é um psicólogo organizacional e deve escrever uma carta
+exagero, mas sim uma necessidade, acreditem, pois, aprendi da pior forma.', 'images/notices/tecnologia/Thiago.png', 'Thiago Tavares de Melo', 'tecnologia/Thiago_Tavares_de_Melo_Depoimento_Cybercrime.pdf'); -- origem: tecnologia/Thiago_Tavares_de_Melo_Depoimento_Cybercrime.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Carta de Reclamação', 'Saúde', 'Filas, descaso e falta de recursos: uma carta que denuncia o que muitos vivem mas poucos dizem em voz alta.', 'Carta de Reclamação: Você é um psicólogo organizacional e deve escrever uma carta
 dirigida ao setor de RH de uma grande empresa. Seu texto deve obrigatoriamente:
 a) contextualizar o aumento de casos de Burnout entre funcionários;
 b) apresentar dois argumentos sobre a relação entre metas abusivas e adoecimento
@@ -606,8 +607,8 @@ plano de implementação dessas medidas.
 
 No aguardo de uma breve resposta,
 
-Ana Júlia Ribeiro Ferreira', 'images/notices/saude/Ana_Ribeiro.png', 'Ana Júlia Ribeiro Ferreira'); -- origem: saude/Ana_Júlia _Ribeiro_Ferreira-_Carta_de_Reclamação.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Discurso', 'Saúde', 'Falar sobre saúde mental ainda é tabu — mas este discurso quebra o silêncio com dados, histórias e urgência.', 'Proposta:
+Ana Júlia Ribeiro Ferreira', 'images/notices/saude/Ana_Ribeiro.png', 'Ana Júlia Ribeiro Ferreira', 'saude/Ana_Júlia _Ribeiro_Ferreira-_Carta_de_Reclamação.pdf'); -- origem: saude/Ana_Júlia _Ribeiro_Ferreira-_Carta_de_Reclamação.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Discurso', 'Saúde', 'Falar sobre saúde mental ainda é tabu — mas este discurso quebra o silêncio com dados, histórias e urgência.', 'Proposta:
 Discurso: Você é uma jovem influenciadora digital e deve escrever um discurso dirigido
 a estudantes de uma escola pública. Seu texto deve obrigatoriamente: a)
 contextualizar a tirania dos filtros e a busca pela perfeição nas telas; b) apresentar dois
@@ -644,8 +645,8 @@ nós mesmos para retribuir ao nosso próximo, trazer o ‘feliz no simples’ em
 ação e não se alienar às ideias das empresas.
 
 Por isso é só, ‘entreguei horrores’ aqui já, né?
-Até uma próxima!', 'images/notices/saude/Ana_Ferraz.png', 'Ana Júlia Correa'); -- origem: saude/Ana_Julia_Correa_discurso_saude-mental.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Carta de Editorial', 'Saúde', 'Por que as escolas precisam incluir saúde mental no currículo? Um editorial que argumenta com dados e sensibilidade.', 'Texto de Apresentação: Você é o curador da seção "Mente Sã" e deve escrever um
+Até uma próxima!', 'images/notices/saude/Ana_Ferraz.png', 'Ana Júlia Correa', 'saude/Ana_Julia_Correa_discurso_saude-mental.pdf'); -- origem: saude/Ana_Julia_Correa_discurso_saude-mental.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Carta de Editorial', 'Saúde', 'Por que as escolas precisam incluir saúde mental no currículo? Um editorial que argumenta com dados e sensibilidade.', 'Texto de Apresentação: Você é o curador da seção "Mente Sã" e deve escrever um
 editorial dirigido aos assinantes da revista. Seu texto deve obrigatoriamente: a)
 contextualizar o tabu que ainda envolve a busca por terapia no Brasil; b) apresentar
 dois argumentos sobre a importância de tratar a saúde mental como saúde pública; e
@@ -679,8 +680,8 @@ Deste modo, esta edição torna-se essencial por destacar o valor do equilíbrio
 emocional e contrapor visões limitadas. Ao longo destas páginas, demonstramos o
 papel fundamental do autocuidado, trazendo ainda a análise do filme citado como um
 bônus para refletirmos sobre como as aparências e os preconceitos podem camuflar
-a verdade.', 'images/notices/saude/Ana_Katy.png', 'Ana Katy Romão Vasconcellos'); -- origem: saude/Ana_Katy_Romão_Vasconcellos_Editorial_Saúde_Mental.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Carta ao conselho universitário', 'Economia', 'Como a economia global afeta o bolso de uma família jovem? Uma carta pessoal sobre inflação, sonhos e reinvenção.', 'Carta ao conselho universitário
+a verdade.', 'images/notices/saude/Ana_Katy.png', 'Ana Katy Romão Vasconcellos', 'saude/Ana_Katy_Romão_Vasconcellos_Editorial_Saúde_Mental.pdf'); -- origem: saude/Ana_Katy_Romão_Vasconcellos_Editorial_Saúde_Mental.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Carta ao conselho universitário', 'Economia', 'Como a economia global afeta o bolso de uma família jovem? Uma carta pessoal sobre inflação, sonhos e reinvenção.', 'Carta ao conselho universitário
 
 
 
@@ -716,8 +717,8 @@ nivela ainda mais o direito á educação.
 
 
 
-Agradecemos a Atenção.', 'images/notices/economia/Maria_Eduarda.png', 'Gabriela Domingues de Oliveira'); -- origem: economia/Gabriela_Oliveira_cartaPessoal_economia.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Manifesto pelo fim dos cortes na educação', 'Economia', 'Os jovens têm propostas para a economia do país. Este manifesto apresenta ideias concretas para um futuro mais justo.', 'Manifesto pelo fim dos cortes na educação
+Agradecemos a Atenção.', 'images/notices/economia/Maria_Eduarda.png', 'Gabriela Domingues de Oliveira', 'economia/Gabriela_Oliveira_cartaPessoal_economia.pdf'); -- origem: economia/Gabriela_Oliveira_cartaPessoal_economia.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Manifesto pelo fim dos cortes na educação', 'Economia', 'Os jovens têm propostas para a economia do país. Este manifesto apresenta ideias concretas para um futuro mais justo.', 'Manifesto pelo fim dos cortes na educação
        Visto que a educação é essencial para a formação do caráter da população e
 um direito garantido pela Constituição, nós, estudantes, manifestamos nossa
 indignação diante dos cortes de verbas destinados às escolas públicas brasileiras.
@@ -748,8 +749,8 @@ oportunidades para todos.
 
 
 
-Ass: Líder Estudantil', 'images/notices/economia/Milena.png', 'Maria Eduarda Bertoli'); -- origem: economia/Maria_Eduarda_Bertolli_Da_Silva_Manifesto_Economia.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Depoimento', 'Economia', 'Crescer em meio à crise econômica molda perspectivas únicas. Um depoimento sobre resiliência e reconstrução financeira.', 'Proposta de Apresentação: Você é uma empreendedora da periferia que está dando
+Ass: Líder Estudantil', 'images/notices/economia/Milena.png', 'Maria Eduarda Bertoli', 'economia/Maria_Eduarda_Bertolli_Da_Silva_Manifesto_Economia.pdf'); -- origem: economia/Maria_Eduarda_Bertolli_Da_Silva_Manifesto_Economia.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Depoimento', 'Economia', 'Crescer em meio à crise econômica molda perspectivas únicas. Um depoimento sobre resiliência e reconstrução financeira.', 'Proposta de Apresentação: Você é uma empreendedora da periferia que está dando
 um depoimento pessoal para conseguir quebrar barreiras para ter crédito no banco.
 
 Sou uma jovem de 18 anos que cresceu na periferia e vive uma situação difícil
@@ -774,8 +775,8 @@ melhor. Essa realidade não é apenas minha, mas também de muitas pessoas que
 vivem na periferia e lutam diariamente para conquistar espaço e reconhecimento.
 Por isso, é necessário que a sociedade e as instituições financeiras deem mais
 atenção aos pequenos empreendedores das periferias, criando oportunidades e
-oferecendo apoio para que eles possam crescer e transformar suas vidas.', 'images/notices/economia/Milena.png', 'Milena Hoppe Sales'); -- origem: economia/Milena_Hoppe_Sales_depoimentoPessoal_economia.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Discurso', 'Economia', 'Economia não é só para especialistas — é para todo cidadão que quer entender e transformar sua realidade.', 'Senhoras e Senhores deste fórum,
+oferecendo apoio para que eles possam crescer e transformar suas vidas.', 'images/notices/economia/Milena.png', 'Milena Hoppe Sales', 'economia/Milena_Hoppe_Sales_depoimentoPessoal_economia.pdf'); -- origem: economia/Milena_Hoppe_Sales_depoimentoPessoal_economia.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Discurso', 'Economia', 'Economia não é só para especialistas — é para todo cidadão que quer entender e transformar sua realidade.', 'Senhoras e Senhores deste fórum,
 
 Hoje eu quero falar sobre a sub-representação racial nos cargos de liderança. Mesmo
 com a população negra sendo grande parte da sociedade brasileira, ainda vemos
@@ -802,8 +803,8 @@ crescer dentro das organizações.
 Construir empresas mais diversas é construir um futuro mais justo, inovador e melhor
 para todos.
 
-Obrigado.', 'images/notices/economia/Maria_Eduarda.png', 'Nicoly Valaitis de Oliveira'); -- origem: economia/Nicoly_Valaitis-discurso-economia.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Manifesto dos trabalhadores contra a escala 6x1', 'Mundo do Trabalho', 'O mercado de trabalho mudou — mas as regras ainda são as mesmas de 50 anos atrás. Um manifesto por atualização urgente.', 'Proposta: Fazer um manifesto onde o contexto é que eu sou um representante de uma
+Obrigado.', 'images/notices/economia/Maria_Eduarda.png', 'Nicoly Valaitis de Oliveira', 'economia/Nicoly_Valaitis-discurso-economia.pdf'); -- origem: economia/Nicoly_Valaitis-discurso-economia.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Manifesto dos trabalhadores contra a escala 6x1', 'Mundo do Trabalho', 'O mercado de trabalho mudou — mas as regras ainda são as mesmas de 50 anos atrás. Um manifesto por atualização urgente.', 'Proposta: Fazer um manifesto onde o contexto é que eu sou um representante de uma
 Frente Parlamentar e Social e deve escrever um manifesto dirigido ao Governo Federal.
 Seu texto deve obrigatoriamente: a) contextualizar a evolução das leis trabalhistas
 desde a CLT; b) apresentar dois argumentos sobre o impacto positivo da redução de
@@ -845,8 +846,8 @@ Quantos brasileiros ainda precisarão sacrificar sua saúde para garantir o pró
 sustento? é hora de transformar indignação em ação. É hora de fazer da voz coletiva
 um instrumento de mudança. Porque um país que valoriza o trabalho deve, acima de
 tudo, valorizar o trabalhador.
-Imagem:', 'images/notices/mundodotrabalho/Heitor.png', 'Heitor Barbosa dos Santos'); -- origem: mundodotrabalho/Heitor_Barbosa_dos_Santos_Manifesto_MercadoDeTrabalho.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Depoimento', 'Mundo do Trabalho', 'Primeiro emprego, estágio, freelance: as múltiplas faces do jovem trabalhador brasileiro contadas em primeira pessoa.', 'Ser mãe solo e trabalhadora é carregar diariamente uma responsabilidade que
+Imagem:', 'images/notices/mundodotrabalho/Heitor.png', 'Heitor Barbosa dos Santos', 'mundodotrabalho/Heitor_Barbosa_dos_Santos_Manifesto_MercadoDeTrabalho.pdf'); -- origem: mundodotrabalho/Heitor_Barbosa_dos_Santos_Manifesto_MercadoDeTrabalho.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Depoimento', 'Mundo do Trabalho', 'Primeiro emprego, estágio, freelance: as múltiplas faces do jovem trabalhador brasileiro contadas em primeira pessoa.', 'Ser mãe solo e trabalhadora é carregar diariamente uma responsabilidade que
 nunca acaba. Minha rotina começa antes mesmo do sol nascer. Acordo cedo
 para organizar a casa, preparar o café, arrumar meu filho para a escola e deixar
 tudo encaminhado antes de sair para o trabalho. Durante o expediente, mesmo
@@ -870,8 +871,8 @@ garantam creches acessíveis, melhores condições de trabalho, jornadas mais
 flexíveis e auxílio financeiro para mulheres que sustentam seus filhos sozinhas.
 Essas medidas não seriam privilégios, mas formas de garantir dignidade,
 segurança e melhores oportunidades tanto para as mães quanto para as
-crianças.', 'images/notices/mundodotrabalho/Heitor.png', 'João Marcos Ferreira Benevides'); -- origem: mundodotrabalho/Joao_Marcos_Depoimento_MercadoTrabalho.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Carta Pessoal', 'Mundo do Trabalho', 'Trabalhar seis dias e folgar um: o que essa escala faz com o corpo, a mente e a vida social dos trabalhadores jovens?', 'Proposta: Você é um jovem trabalhador do setor de telemarketing que enfrenta
+crianças.', 'images/notices/mundodotrabalho/Heitor.png', 'João Marcos Ferreira Benevides', 'mundodotrabalho/Joao_Marcos_Depoimento_MercadoTrabalho.pdf'); -- origem: mundodotrabalho/Joao_Marcos_Depoimento_MercadoTrabalho.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Carta Pessoal', 'Mundo do Trabalho', 'Trabalhar seis dias e folgar um: o que essa escala faz com o corpo, a mente e a vida social dos trabalhadores jovens?', 'Proposta: Você é um jovem trabalhador do setor de telemarketing que enfrenta
   diariamente uma rotina de alta pressão psicológica e metas rígidas. Representa uma
    classe que sofre com o isolamento social e o esgotamento, sentindo-se mais como
          uma peça de uma engrenagem do que como um cidadão com direito ao lazer.
@@ -903,8 +904,8 @@ trabalhadores possam ter melhores condições de vida, saúde e convivência fam
 
 Atenciosamente,
 
-Mateus Lopes Ferreira', 'images/notices/mundodotrabalho/Vinícius_Assuncao.png', 'Mateus Lopes Ferreira'); -- origem: mundodotrabalho/mateus_lopes_ferreira_carta_escala6X1.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'A redução da jornada de trabalho: o passo ao mercado de trabalho mais humano', 'Mundo do Trabalho', 'Uma análise editorial sobre as tendências do mercado de trabalho e o que os jovens precisam saber para se posicionar.', 'Proposta
+Mateus Lopes Ferreira', 'images/notices/mundodotrabalho/Vinícius_Assuncao.png', 'Mateus Lopes Ferreira', 'mundodotrabalho/mateus_lopes_ferreira_carta_escala6X1.pdf'); -- origem: mundodotrabalho/mateus_lopes_ferreira_carta_escala6X1.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'A redução da jornada de trabalho: o passo ao mercado de trabalho mais humano', 'Mundo do Trabalho', 'Uma análise editorial sobre as tendências do mercado de trabalho e o que os jovens precisam saber para se posicionar.', 'Proposta
 Texto de Apresentação: Você é um colunista de mercado de trabalho e deve
 escrever um editorial dirigido aos leitores da revista. Seu texto deve
 obrigatoriamente: a) contextualizar a tendência global de redução da jornada
@@ -955,8 +956,8 @@ de um mercado de trabalho mais saudável.
 um sistema econômico de trabalho mais humano, como com a redução da jornada e
 o fim da escala 6x1, que busca melhor qualidade de vida e eficiência juntos. E
 convidamos você, a fazer parte da história e protestar a favor das propostas, porque
-o povo é a base da política.', 'images/notices/mundodotrabalho/Vinícius_Assuncao.png', 'Vinícius Assunção Santos'); -- origem: mundodotrabalho/Vinícius_Assunção_Santos_Editorial_MarcadoDeTrabalho.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'Depoimento', 'Violência', 'Testemunhar violência deixa marcas. Este depoimento corajoso expõe o que muitos preferem não ver nas cidades brasileiras.', 'Depoimento: Você é um ex-agente penitenciário e deve escrever um depoimento dirigido
+o povo é a base da política.', 'images/notices/mundodotrabalho/Vinícius_Assuncao.png', 'Vinícius Assunção Santos', 'mundodotrabalho/Vinícius_Assunção_Santos_Editorial_MarcadoDeTrabalho.pdf'); -- origem: mundodotrabalho/Vinícius_Assunção_Santos_Editorial_MarcadoDeTrabalho.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'Depoimento', 'Violência', 'Testemunhar violência deixa marcas. Este depoimento corajoso expõe o que muitos preferem não ver nas cidades brasileiras.', 'Depoimento: Você é um ex-agente penitenciário e deve escrever um depoimento dirigido
 aos leitores da revista. Seu texto deve obrigatoriamente a) narrar a experiência cotidiana
 dentro de uma unidade prisional lotada; b) apresentar dois argumentos sobre a ineficácia do
 sistema carcerário na ressocialização; e c) refletir sobre a necessidade de políticas de
@@ -995,8 +996,8 @@ potencial ofensivo e a revisão de prisões provisórias que superlotam as nossa
 sem julgamento. A segurança pública não se faz apenas construindo muros mais altos, mas
 garantindo que o sistema penal seja a última medida para problemas que são, na raiz,
 sociais e estruturais. Somente reduzindo a pressão dentro dos presídios é que poderemos
-ver uma real melhora na vida dentro e fora das cadeias.', 'images/notices/violencia/Gabriela_Carnevali.png', 'Anna Viktoria Alacamini de Carvalho'); -- origem: violencia/Anna_Viktoria_Alacamini_de_Carvalho_depoimento_violência.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'CARTA ABERTA À SECRETARIA DE SEGURANÇA PÚBLICA', 'Violência', 'Uma carta de denúncia sobre as operações policiais nas periferias: quem protege, quem pune, e quem fica invisível.', 'Eixo 3: Violência (Segurança e Direitos Humanos)
+ver uma real melhora na vida dentro e fora das cadeias.', 'images/notices/violencia/Gabriela_Carnevali.png', 'Anna Viktoria Alacamini de Carvalho', 'violencia/Anna_Viktoria_Alacamini_de_Carvalho_depoimento_violência.pdf'); -- origem: violencia/Anna_Viktoria_Alacamini_de_Carvalho_depoimento_violência.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'CARTA ABERTA À SECRETARIA DE SEGURANÇA PÚBLICA', 'Violência', 'Uma carta de denúncia sobre as operações policiais nas periferias: quem protege, quem pune, e quem fica invisível.', 'Eixo 3: Violência (Segurança e Direitos Humanos)
 
 Carta de Denúncia: Você é uma moradora de comunidade e deve escrever uma carta
 dirigida à Secretaria de Segurança Pública. Seu texto deve obrigatoriamente: a)
@@ -1037,8 +1038,8 @@ comunidade.
 
 Atenciosamente,
 
-                                                            Moradora da Comunidade.', 'images/notices/violencia/Elisa.png', 'Elisa Dias Sérgio'); -- origem: violencia/Elisa_Dias_Sergio_CartaDenúncia_OperaçõesPolicias.pdf
-INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome) VALUES (@acervo_usuario_id, 'A URBANIZAÇÃO SOCIAL GEROU AS FAVELAS?', 'Violência', 'Um texto de abertura que contextualiza os dados e histórias por trás dos índices de violência no Brasil contemporâneo.', 'Gabriela Carnevali Gonçalves Lima, nº 11 - 3º ano A
+                                                            Moradora da Comunidade.', 'images/notices/violencia/Elisa.png', 'Elisa Dias Sérgio', 'violencia/Elisa_Dias_Sergio_CartaDenúncia_OperaçõesPolicias.pdf'); -- origem: violencia/Elisa_Dias_Sergio_CartaDenúncia_OperaçõesPolicias.pdf
+INSERT INTO noticia (usuario_id, titulo, genero, descricao, conteudo, imagem_capa, autor_nome, arquivo_pdf) VALUES (@acervo_usuario_id, 'A URBANIZAÇÃO SOCIAL GEROU AS FAVELAS?', 'Violência', 'Um texto de abertura que contextualiza os dados e histórias por trás dos índices de violência no Brasil contemporâneo.', 'Gabriela Carnevali Gonçalves Lima, nº 11 - 3º ano A
 
 Texto de Apresentação: Você é um estudante de sociologia e deve escrever um
 prefácio dirigido aos leitores da revista. Seu texto deve obrigatoriamente: a)
@@ -1084,4 +1085,4 @@ e perícia, além de projetos urgentes de urbanismo social que buscam minimizar 
 disparidade do acesso público. Ainda discutiremos políticas públicas para a
 reestruturação educacional de infantes, que é, talvez, a única maneira de extinguir
 essa onda geracional de vulnerabilidade.
-Desejo a você uma leitura inquietante e provocativa.', 'images/notices/violencia/Gabriela_Carnevali.png', 'Gabriela Carnevali Gonçalves Lima'); -- origem: violencia/Gabriela_Carnevali_Gonçalves_Lima_TextoDeApresentação_Violência.pdf
+Desejo a você uma leitura inquietante e provocativa.', 'images/notices/violencia/Gabriela_Carnevali.png', 'Gabriela Carnevali Gonçalves Lima', 'violencia/Gabriela_Carnevali_Gonçalves_Lima_TextoDeApresentação_Violência.pdf'); -- origem: violencia/Gabriela_Carnevali_Gonçalves_Lima_TextoDeApresentação_Violência.pdf
