@@ -1,5 +1,5 @@
 const Comentario = require("../models/comentario");
-const AppError = require("../utils/AppError");
+const AppError = require("../utils/appError");
 
 const parseId = (id) => {
   const parsed = Number(id);

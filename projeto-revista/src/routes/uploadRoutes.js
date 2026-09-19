@@ -1,12 +1,14 @@
 // src/routes/uploadRoutes.js
 const express = require("express");
 const router = express.Router();
-const upload = require("../config/multerConfig");
+const upload = require("../config/multerconfig");
 const uploadController = require("../controllers/uploadController");
+const { autenticar } = require("../middlewares/auth");
 
 // POST /upload/noticia/:id  →  Envia campo "imagem" no FormData
 router.post(
   "/noticia/:id",
+  autenticar,
   upload.single("imagem"),
   uploadController.uploadCapaNoticia,
 );
@@ -14,6 +16,7 @@ router.post(
 // POST /upload/perfil/:id  →  Envia campo "imagem" no FormData
 router.post(
   "/perfil/:id",
+  autenticar,
   upload.single("imagem"),
   uploadController.uploadFotoPerfil,
 );

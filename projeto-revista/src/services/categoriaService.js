@@ -1,5 +1,5 @@
 const Categoria = require("../models/categoria");
-const AppError = require("../utils/AppError");
+const AppError = require("../utils/appError");
 
 const parseId = (id) => {
   const parsed = Number(id);

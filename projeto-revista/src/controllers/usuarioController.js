@@ -1,4 +1,5 @@
 const usuarioService = require("../services/usuarioService");
+const AppError = require("../utils/appError");
 
 const usuarioController = {
   listarTodos: async (req, res, next) => {
@@ -21,11 +22,12 @@ const usuarioController = {
 
   criar: async (req, res, next) => {
     try {
-      const novoId = await usuarioService.criar(req.body);
+      const { usuario, token } = await usuarioService.criar(req.body);
       res.status(201).json({
         sucesso: true,
         mensagem: "Usuário criado com sucesso",
-        id: novoId,
+        dados: usuario,
+        token,
       });
     } catch (erro) {
       next(erro);
@@ -34,6 +36,13 @@ const usuarioController = {
 
   atualizar: async (req, res, next) => {
     try {
+      // Só o próprio usuário ou um admin pode editar o perfil.
+      if (
+        req.usuario.tipo !== "admin" &&
+        Number(req.usuario.id) !== Number(req.params.id)
+      ) {
+        return next(new AppError("Sem permissão para editar este usuário", 403));
+      }
       await usuarioService.atualizar(req.params.id, req.body);
       res.json({ sucesso: true, mensagem: "Usuário atualizado com sucesso" });
     } catch (erro) {
@@ -43,6 +52,12 @@ const usuarioController = {
 
   excluir: async (req, res, next) => {
     try {
+      if (
+        req.usuario.tipo !== "admin" &&
+        Number(req.usuario.id) !== Number(req.params.id)
+      ) {
+        return next(new AppError("Sem permissão para excluir este usuário", 403));
+      }
       await usuarioService.excluir(req.params.id);
       res.json({ sucesso: true, mensagem: "Usuário excluído com sucesso" });
     } catch (erro) {
@@ -52,11 +67,12 @@ const usuarioController = {
 
   login: async (req, res, next) => {
     try {
-      const usuario = await usuarioService.login(req.body);
+      const { usuario, token } = await usuarioService.login(req.body);
       res.json({
         sucesso: true,
         mensagem: "Login realizado com sucesso",
         dados: usuario,
+        token,
       });
     } catch (erro) {
       next(erro);

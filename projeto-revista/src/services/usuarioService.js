@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const Usuario = require("../models/usuario");
 const AppError = require("../utils/appError"); // ← corrigido: minúsculo
+const { gerarToken } = require("../utils/jwt");
 
 const SALT_ROUNDS = 10;
 const TIPOS_VALIDOS = ["aluno", "professor", "admin"];
@@ -34,7 +35,10 @@ const usuarioService = {
   },
 
   criar: async (body) => {
-    const { nome, turma, email, rm, senha, tipo } = body;
+    const { nome, turma, email, rm, senha } = body;
+    // Aceita "Aluno" / "ALUNO" / "aluno" — normaliza antes de validar,
+    // porque o frontend hoje envia com a primeira letra maiúscula.
+    const tipo = body.tipo ? String(body.tipo).trim().toLowerCase() : "";
 
     if (!nome || !turma || !email || !rm || !senha || !tipo) {
       throw new AppError(
@@ -65,16 +69,21 @@ const usuarioService = {
 
     const senhaHash = await bcrypt.hash(String(senha), SALT_ROUNDS);
 
-    return await Usuario.create({
+    const novoId = await Usuario.create({
       nome: String(nome).trim(),
       turma: String(turma).trim(),
       email: String(email).trim().toLowerCase(),
       rm: Number(rm),
       senha: senhaHash,
-      tipo: tipo.trim(),
+      tipo,
       foto_perfil: body.foto_perfil ?? null,
       descricao: body.descricao ?? null,
     });
+
+    const usuarioCriado = await Usuario.findById(novoId);
+    const token = gerarToken(usuarioCriado);
+
+    return { usuario: usuarioCriado, token };
   },
 
   atualizar: async (id, body) => {
@@ -137,7 +146,9 @@ const usuarioService = {
 
     // Nunca retorne a senha na resposta
     const { senha: _, ...usuarioPublico } = usuario;
-    return usuarioPublico;
+    const token = gerarToken(usuarioPublico);
+
+    return { usuario: usuarioPublico, token };
   },
 };
 

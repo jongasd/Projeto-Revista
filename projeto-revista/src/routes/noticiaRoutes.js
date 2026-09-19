@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const noticiaController = require("../controllers/noticiaController");
+const { autenticar } = require("../middlewares/auth");
 
 router.get("/", noticiaController.listarTodas);
 router.get("/:id", noticiaController.buscarPorId);
-router.post("/", noticiaController.criar);
-router.put("/:id", noticiaController.atualizar);
-router.delete("/:id", noticiaController.excluir);
+router.post("/", autenticar, noticiaController.criar);
+router.put("/:id", autenticar, noticiaController.atualizar);
+router.delete("/:id", autenticar, noticiaController.excluir);
 
 module.exports = router;

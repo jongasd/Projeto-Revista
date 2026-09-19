@@ -40,7 +40,10 @@ const comentarioController = {
 
   criar: async (req, res, next) => {
     try {
-      const novoId = await comentarioService.criar(req.body);
+      // usuario_id vem sempre do token, nunca do body — evita que alguém
+      // poste um comentário em nome de outra pessoa.
+      const dados = { ...req.body, usuario_id: req.usuario.id };
+      const novoId = await comentarioService.criar(dados);
       res.status(201).json({
         sucesso: true,
         mensagem: "Comentário criado com sucesso",

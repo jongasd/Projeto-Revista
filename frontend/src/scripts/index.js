@@ -10,13 +10,14 @@
     const grupoNif   = document.getElementById('grupo-nif');
     const inputRm    = document.getElementById('rm');
     const inputNif   = document.getElementById('nif');
+    const inputTurma = document.getElementById('turma');
     const cancelBtn  = document.querySelector('.cancel');
 
     // ── Troca dinâmica do campo RM / NIF ──────────────────────────
     function atualizarCampoCargo() {
-        const valor = cargo.value;
+        const valor = cargo.value; // "aluno" | "professor"
 
-        if (valor === 'Professor') {
+        if (valor === 'professor') {
             grupoNif.classList.remove('hidden');
             grupoRm.classList.add('hidden');
             inputNif.required = true;
@@ -49,7 +50,6 @@
         msg.textContent = texto;
         msg.className   = `msg ${tipo}`;
 
-        // Remove automaticamente após 4 s
         setTimeout(() => { msg.className = 'msg'; }, 4000);
     }
 
@@ -62,14 +62,19 @@
     }
 
     // ── Submit ────────────────────────────────────────────────────
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
         const nome  = document.getElementById('nome').value.trim();
         const senha = document.getElementById('senha').value;
         const email = document.getElementById('email').value.trim();
-        const cargoVal = cargo.value;
-        const idExtra = cargoVal === 'Professor'
+        const turma = inputTurma.value.trim();
+        const cargoVal = cargo.value; // já vem "aluno" ou "professor"
+        // O banco hoje só tem a coluna `rm` (sem coluna separada para NIF de
+        // professor) — então, para professor, reaproveitamos o valor do NIF
+        // nesse mesmo campo. É um contorno, não uma modelagem ideal; o certo
+        // seria adicionar uma coluna própria para isso.
+        const idExtra = cargoVal === 'professor'
             ? inputNif.value.trim()
             : inputRm.value.trim();
 
@@ -92,26 +97,48 @@
             return;
         }
 
-        if (!idExtra) {
-            const campo = cargoVal === 'Professor' ? 'NIF' : 'RM';
-            exibirMensagem(`Por favor, informe o ${campo}.`, 'erro');
-            (cargoVal === 'Professor' ? inputNif : inputRm).focus();
+        if (!turma) {
+            exibirMensagem('Por favor, informe a turma.', 'erro');
+            inputTurma.focus();
             return;
         }
 
-        // Simula cadastro (substitua pela chamada real à API)
-        const usuario = { nome, email, cargo: cargoVal, id: idExtra };
-        console.log('Usuário cadastrado:', usuario);
+        if (!idExtra) {
+            const campo = cargoVal === 'professor' ? 'NIF' : 'RM';
+            exibirMensagem(`Por favor, informe o ${campo}.`, 'erro');
+            (cargoVal === 'professor' ? inputNif : inputRm).focus();
+            return;
+        }
 
-        // Salva no sessionStorage para uso na tela inicial
-        sessionStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+        if (!/^\d+$/.test(idExtra)) {
+            exibirMensagem('O RM/NIF deve conter apenas números.', 'erro');
+            return;
+        }
 
-        exibirMensagem('Cadastro realizado com sucesso! Redirecionando…', 'sucesso');
+        const botao = form.querySelector('button[type="submit"]');
+        botao.disabled = true;
+        botao.textContent = 'Cadastrando...';
 
-        setTimeout(() => {
-            // Redireciona para a tela inicial
-            window.location.href = 'index.html'; // ajuste conforme a rota real
-        }, 1500);
+        try {
+            await CJAuth.cadastrar({
+                nome,
+                turma,
+                email,
+                rm: idExtra,
+                senha,
+                tipo: cargoVal,
+            });
+
+            exibirMensagem('Cadastro realizado com sucesso! Redirecionando…', 'sucesso');
+
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 1200);
+        } catch (erro) {
+            exibirMensagem(erro.message, 'erro');
+            botao.disabled = false;
+            botao.textContent = 'Cadastrar e ir para tela inicial';
+        }
     });
 
     // ── Cancelar ──────────────────────────────────────────────────
@@ -120,7 +147,6 @@
             form.reset();
             atualizarCampoCargo();
 
-            // Remove mensagem se houver
             const msg = document.querySelector('.msg');
             if (msg) msg.className = 'msg';
         }
@@ -128,6 +154,9 @@
 
     // ── Mascara simples para RM (somente números) ─────────────────
     inputRm.addEventListener('input', function () {
+        this.value = this.value.replace(/\D/g, '');
+    });
+    inputNif.addEventListener('input', function () {
         this.value = this.value.replace(/\D/g, '');
     });
 
