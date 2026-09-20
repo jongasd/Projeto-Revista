@@ -1,285 +1,20 @@
-/* ═══════════════════════════════════════════════════════
-   noticia.js — lógica da página de leitura de matéria
-   Conecta Jovem — src/scripts/noticia.js
-═══════════════════════════════════════════════════════ */
+// ═══════════════════════════════════════════
+//  CONECTA JOVEM — noticia.js (página de leitura)
+//  Busca a notícia pela API (GET /noticias/:id) em vez de um
+//  catálogo fixo no código.
+// ═══════════════════════════════════════════
 
-// ─────────────────────────────────────────────────────
-// CATÁLOGO DE NOTÍCIAS
-// Estrutura espelhada com as páginas de categoria.
-// Quando o backend estiver pronto, este objeto é
-// substituído por uma chamada à API — o restante do
-// código não muda.
-// ─────────────────────────────────────────────────────
-const CATALOGO = {
-  educacao: {
-    label: "Educação",
-    href: "educacao.html",
-    itens: [
-      {
-        id: "edu-01",
-        titulo: "Carta de Reclamação",
-        autor: "Lais de Souza Vaz",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo: "../../documents/educacao/laiz_vaz_carta_pessoal_educacao.pdf",
-      },
-      {
-        id: "edu-02",
-        titulo: "MANIFESTO PELA EDUCAÇÃO INCLUSIVA",
-        autor: "Letícia Parentella Sanduchi",
-        data: "11 Mai 2026",
-        tempLeitura: 3,
-        arquivo:
-          "../../documents/educacao/leticia_parentella-sanduchi_manifesto_educacao.pdf",
-      },
-      {
-        id: "edu-03",
-        titulo: "Depoimento",
-        autor: "Maria Júlia Garnham Ferreira",
-        data: "11 Mai 2026",
-        tempLeitura: 5,
-        arquivo:
-          "../../documents/educacao/Maria_Julia_Garnham_Ferreira_Depoimento_Educação.pdf",
-      },
-      {
-        id: "edu-04",
-        titulo: "Discurso",
-        autor: "Sofia Marcolongo dos Santos",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/educacao/sofia_marcolongo_dos_santos_discurso_educacao.pdf",
-      },
-    ],
-  },
-  politica: {
-    label: "Política",
-    href: "politica.html",
-    itens: [
-      {
-        id: "pol-01",
-        titulo: "Discurso Soberania Nacional",
-        autor: "Emanuely Macedo Padovan",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/politica/Emanuely_Macedo_Padovan_Discurso_SoberaniaNacional.pdf",
-      },
-      {
-        id: "pol-02",
-        titulo: "Carta Aberta Soberania Nacional",
-        autor: "Livia Hermano",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/politica/Livia_Hermano_Carta_Aberta_SoberaniaNacional.pdf",
-      },
-      {
-        id: "pol-03",
-        titulo: "Depoimento Soberania Nacional",
-        autor: "Yasmin Vitória do Nascimento Ramos",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/politica/Yasmin_Vitoria_do_Nascimento_Ramos_Depoimento_SoberaniaNacional.pdf",
-      },
-    ], // adicione as notícias da categoria aqui
-  },
-  tecnologia: {
-    label: "Tecnologia",
-    href: "tecnologia.html",
-    itens: [
-      {
-        id: "tec-01",
-        titulo:
-          "MANIFESTO DO COLETIVO DE ARTISTAS VISUAIS PARA AS PLATAFORMAS DIGITAIS",
-        autor: "Anthero Franco Sprana",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/tecnologia/Anthero_Franco_Sprana_Manifesto_Ia_e_Etica_Digital.pdf",
-      },
-      {
-        id: "tec-02",
-        titulo: "Discurso - Cybercrime",
-        autor: "Enzo Thomaz de Jesus",
-        data: "11 Mai 2026",
-        tempLeitura: 3,
-        arquivo:
-          "../../documents/tecnologia/Enzo_Thomaz_de_Jesus_Discurso_Cybercrime.pdf",
-      },
-      {
-        id: "tec-03",
-        titulo: "Carta aberta aos desenvolvedores do ChatGPT",
-        autor: "Pietro Guedes de Oliveira",
-        data: "11 Mai 2026",
-        tempLeitura: 5,
-        arquivo:
-          "../../documents/tecnologia/Pietro_Guedes_de_Oliveira_CartaAberta_IAeEticaDigital.pdf",
-      },
-      {
-        id: "tec-04",
-        titulo: "Depoimento",
-        autor: "Thiago Tavares de Melo",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/tecnologia/Thiago_Tavares_de_Melo_Depoimento_Cybercrime.pdf",
-      },
-    ],
-  },
-  saude: {
-    label: "Saúde",
-    href: "saude.html",
-    itens: [
-      {
-        id: "sau-01",
-        titulo: "Carta de Reclamação",
-        autor: "Ana Júlia Ribeiro Ferreira",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/saude/Ana_Júlia _Ribeiro_Ferreira-_Carta_de_Reclamação.pdf",
-      },
-      {
-        id: "sau-02",
-        titulo: "Discurso",
-        autor: "Ana Júlia Correa",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/saude/Ana_Julia_Correa_discurso_saude-mental.pdf",
-      },
-      {
-        id: "sau-03",
-        titulo: "Carta de Editorial",
-        autor: "Ana Katy Romão Vasconcellos",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/saude/Ana_Katy_Romão_Vasconcellos_Editorial_Saúde_Mental.pdf",
-      },
-    ],
-  },
-  economia: {
-    label: "Economia",
-    href: "economia.html",
-    itens: [
-      {
-        id: "eco-01",
-        titulo: "Carta ao conselho universitário",
-        autor: "Gabriela Domingues de Oliveira",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/economia/Gabriela_Oliveira_cartaPessoal_economia.pdf",
-      },
-      {
-        id: "eco-02",
-        titulo: "Manifesto pelo fim dos cortes na educação ",
-        autor: "Maria Eduarda Bertoli",
-        data: "11 Mai 2026",
-        tempLeitura: 3,
-        arquivo:
-          "../../documents/economia/Maria_Eduarda_Bertolli_Da_Silva_Manifesto_Economia.pdf",
-      },
-      {
-        id: "eco-03",
-        titulo: "Depoimento",
-        autor: "Milena Hoppe Sales",
-        data: "11 Mai 2026",
-        tempLeitura: 5,
-        arquivo:
-          "../../documents/economia/Milena_Hoppe_Sales_depoimentoPessoal_economia.pdf",
-      },
-      {
-        id: "eco-04",
-        titulo: "Discurso",
-        autor: "Nicoly Valaitis de Oliveira",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/economia/Nicoly_Valaitis-discurso-economia.pdf",
-      },
-    ],
-  },
-  mundotrabalho: {
-    label: "Mundo do Trabalho",
-    href: "mundoTrabalho.html",
-    itens: [
-      {
-        id: "mun-01",
-        titulo: "Manifesto dos trabalhadores contra a escala 6x1",
-        autor: "Heitor Barbosa dos Santos",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/mundodotrabalho/Heitor_Barbosa_dos_Santos_Manifesto_MercadoDeTrabalho.pdf",
-      },
-      {
-        id: "mun-02",
-        titulo: "Depoimento",
-        autor: "João Marcos Ferreira Benevides",
-        data: "11 Mai 2026",
-        tempLeitura: 3,
-        arquivo:
-          "../../documents/mundodotrabalho/Joao_Marcos_Depoimento_MercadoTrabalho.pdf",
-      },
-      {
-        id: "mun-03",
-        titulo: "Carta Pessoal",
-        autor: "Mateus Lopes Ferreira",
-        data: "11 Mai 2026",
-        tempLeitura: 5,
-        arquivo:
-          "../../documents/mundodotrabalho/mateus_lopes_ferreira_carta_escala6X1.pdf",
-      },
-      {
-        id: "mun-04",
-        titulo:
-          "A redução da jornada de trabalho: o passo ao mercado de trabalho mais humano",
-        autor: "Vinícius Assunção Santos",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/mundodotrabalho/Vinícius_Assunção_Santos_Editorial_MarcadoDeTrabalho.pdf",
-      },
-    ],
-  },
-  violencia: {
-    label: "Violência",
-    href: "violencia.html",
-    itens: [
-      {
-        id: "vio-01",
-        titulo: "Depoimento",
-        autor: "Anna Viktoria Alacamini de Carvalho",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/violencia/Anna_Viktoria_Alacamini_de_Carvalho_depoimento_violência.pdf",
-      },
-      {
-        id: "vio-02",
-        titulo: "CARTA ABERTA À SECRETARIA DE SEGURANÇA PÚBLICA",
-        autor: "Elisa Dias Sérgio",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/violencia/Elisa_Dias_Sergio_CartaDenúncia_OperaçõesPolicias.pdf",
-      },
-      {
-        id: "vio-03",
-        titulo: "A URBANIZAÇÃO SOCIAL GEROU AS FAVELAS?",
-        autor: "Gabriela Carnevali Gonçalves Lima",
-        data: "11 Mai 2026",
-        tempLeitura: 4,
-        arquivo:
-          "../../documents/violencia/Gabriela_Carnevali_Gonçalves_Lima_TextoDeApresentação_Violência.pdf",
-      },
-    ],
-  },
+// Mapeia o gênero (como salvo no banco) para o link da aba/categoria no menu
+const HREF_POR_GENERO = {
+  "Educação": "educacao.html",
+  "Política": "politica.html",
+  "Tecnologia": "tecnologia.html",
+  "Saúde": "saude.html",
+  "Economia": "economia.html",
+  "Mundo do Trabalho": "mundoTrabalho.html",
+  "Violência": "violencia.html",
 };
+
 // ── Estado PDF.js ──
 const PDFJS_CDN = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.269";
 let pdfDoc = null;
@@ -287,76 +22,115 @@ let paginaAtual = 1;
 let totalPag = 0;
 let renderTask = null;
 
+function calcularTempoLeitura(conteudo) {
+  const palavras = (conteudo || "").trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(palavras / 200));
+}
+
+function formatarData(isoString) {
+  if (!isoString) return "";
+  try {
+    return new Date(isoString).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  } catch {
+    return isoString;
+  }
+}
+
 // ─────────────────────────────────────────────────────
 // INICIALIZAÇÃO
 // ─────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
-  const categoriaKey = params.get("categoria") || "";
-  const noticiaId = params.get("id") || "";
+  const noticiaId = params.get("id");
 
-  const categoria = CATALOGO[categoriaKey];
-
-  if (!categoria) {
-    mostrarErro("Categoria não encontrada.");
-    return;
-  }
-
-  const noticia = categoria.itens.find((n) => n.id === noticiaId);
-
-  if (!noticia) {
+  if (!noticiaId) {
     mostrarErro("Matéria não encontrada.");
     return;
   }
 
-  renderizarPagina(noticia, categoria);
-  carregarRelacionadas(noticia, categoria);
+  let noticia;
+  try {
+    noticia = await CJNoticiasApi.buscarPorId(noticiaId, {
+      prefixoImagem: "../../",
+    });
+  } catch (erro) {
+    console.error(erro);
+    mostrarErro("Não foi possível carregar esta matéria.");
+    return;
+  }
+
+  renderizarPagina(noticia);
+  carregarRelacionadas(noticia);
   iniciarFavoritar(noticia.id);
 });
 
 // ─────────────────────────────────────────────────────
 // RENDERIZAR CONTEÚDO DA PÁGINA
 // ─────────────────────────────────────────────────────
-function renderizarPagina(noticia, categoria) {
-  // Título da aba
+function renderizarPagina(noticia) {
   document.title = `${noticia.titulo} — Conecta Jovem`;
 
-  // Breadcrumb
   const breadcrumbCat = document.getElementById("breadcrumbCat");
-  if (breadcrumbCat) breadcrumbCat.textContent = categoria.label;
+  if (breadcrumbCat) breadcrumbCat.textContent = noticia.categoria;
 
-  // Tags
   const tagCat = document.getElementById("tagCategoria");
-  if (tagCat) tagCat.textContent = categoria.label;
+  if (tagCat) tagCat.textContent = noticia.categoria;
 
   const tagAutor = document.getElementById("tagAutor");
   if (tagAutor) tagAutor.textContent = noticia.autor;
 
-  // Título
   const titulo = document.getElementById("noticaTitulo");
   if (titulo) titulo.textContent = noticia.titulo;
 
-  // Metadados
   const metaDataTxt = document.getElementById("metaDataTxt");
-  if (metaDataTxt) metaDataTxt.textContent = noticia.data;
+  if (metaDataTxt) metaDataTxt.textContent = formatarData(noticia.data);
 
   const metaTempoTxt = document.getElementById("metaTempoTxt");
   if (metaTempoTxt)
-    metaTempoTxt.textContent = `${noticia.tempLeitura} min de leitura`;
+    metaTempoTxt.textContent = `${calcularTempoLeitura(noticia.conteudo)} min de leitura`;
 
-  // Download
+  const arquivoPdf = noticia.arquivo_pdf
+    ? `../../documents/${noticia.arquivo_pdf}`
+    : null;
+
   const btnDownload = document.getElementById("btnDownload");
-  if (btnDownload) btnDownload.setAttribute("href", noticia.arquivo);
+  if (btnDownload) {
+    if (arquivoPdf) btnDownload.setAttribute("href", arquivoPdf);
+    else btnDownload.style.display = "none";
+  }
 
-  // Fallback download
   const fallbackDl = document.getElementById("fallbackDownload");
-  if (fallbackDl) fallbackDl.setAttribute("href", noticia.arquivo);
+  if (fallbackDl && arquivoPdf) fallbackDl.setAttribute("href", arquivoPdf);
 
-  // Atualiza destaque da aba de categoria
-  sincronizarAbaAtiva(categoria.href);
+  sincronizarAbaAtiva(HREF_POR_GENERO[noticia.categoria]);
 
-  // Carrega o PDF no iframe
-  iniciarViewer(noticia.arquivo);
+  if (arquivoPdf) {
+    iniciarViewer(arquivoPdf);
+  } else {
+    // Notícia sem PDF de origem — mostra o texto extraído direto.
+    exibirConteudoTexto(noticia.conteudo);
+  }
+}
+
+function exibirConteudoTexto(conteudo) {
+  const viewerWrap = document.getElementById("pdfViewerWrap");
+  const fallback = document.getElementById("pdfFallback");
+  if (fallback) {
+    fallback.style.display = "flex";
+    const texto = document.createElement("pre");
+    texto.style.whiteSpace = "pre-wrap";
+    texto.style.textAlign = "left";
+    texto.style.maxWidth = "700px";
+    texto.style.margin = "0 auto";
+    texto.style.fontFamily = "inherit";
+    texto.textContent = conteudo;
+    fallback.appendChild(texto);
+  }
+  if (viewerWrap) viewerWrap.style.display = "none";
 }
 
 // ─────────────────────────────────────────────────────
@@ -432,11 +206,6 @@ function mostrarLoader(s) {
 window.paginaAnterior = () => irParaPagina(-1);
 window.proximaPagina = () => irParaPagina(+1);
 
-function exibirFallback(frame, fallback) {
-  if (frame) frame.style.display = "none";
-  if (fallback) fallback.style.display = "flex";
-}
-
 // ─────────────────────────────────────────────────────
 // FAVORITAR
 // Usa localStorage para persistir entre páginas.
@@ -473,12 +242,23 @@ function atualizarBotaoFavoritar(btn, ativo) {
 // CARDS RELACIONADOS
 // Mostra até 3 outras matérias da mesma categoria.
 // ─────────────────────────────────────────────────────
-function carregarRelacionadas(noticiaAtual, categoria) {
+async function carregarRelacionadas(noticiaAtual) {
   const grid = document.getElementById("relacionadasGrid");
   const secao = document.getElementById("secaoRelacionadas");
   if (!grid || !secao) return;
 
-  const relacionadas = categoria.itens
+  let todasDaCategoria;
+  try {
+    todasDaCategoria = await CJNoticiasApi.listar({
+      genero: noticiaAtual.categoria,
+      prefixoImagem: "../../",
+    });
+  } catch {
+    secao.style.display = "none";
+    return;
+  }
+
+  const relacionadas = todasDaCategoria
     .filter((n) => n.id !== noticiaAtual.id)
     .slice(0, 3);
 
@@ -487,19 +267,11 @@ function carregarRelacionadas(noticiaAtual, categoria) {
     return;
   }
 
-  relacionadas.forEach((n) => {
-    const card = criarCardRelacionado(n, categoria);
-    grid.appendChild(card);
-  });
+  relacionadas.forEach((n) => grid.appendChild(criarCardRelacionado(n)));
 }
 
-function criarCardRelacionado(noticia, categoria) {
-  const params = new URLSearchParams({
-    categoria: Object.keys(CATALOGO).find(
-      (k) => CATALOGO[k].label === categoria.label,
-    ),
-    id: noticia.id,
-  });
+function criarCardRelacionado(noticia) {
+  const url = `noticia.html?id=${noticia.id}`;
 
   const article = document.createElement("article");
   article.className = "feed-card cat-card";
@@ -508,7 +280,7 @@ function criarCardRelacionado(noticia, categoria) {
 
   article.innerHTML = `
     <div class="feed-card-img">
-      <img src="#" alt="${noticia.titulo}" />
+      <img src="${noticia.img}" alt="${noticia.titulo}" onerror="this.style.opacity='0'" />
       <button class="feed-card-star" aria-label="Favoritar">☆</button>
     </div>
     <div class="feed-card-body">
@@ -516,7 +288,7 @@ function criarCardRelacionado(noticia, categoria) {
       <div class="feed-card-footer">
         <div class="feed-card-tags">
           <span class="feed-tag">${noticia.autor}</span>
-          <span class="feed-tag">${categoria.label}</span>
+          <span class="feed-tag">${noticia.categoria}</span>
         </div>
         <div class="feed-card-stats">
           <span class="feed-stat">
@@ -526,21 +298,18 @@ function criarCardRelacionado(noticia, categoria) {
               <circle cx="12" cy="12" r="10"/>
               <polyline points="12 6 12 12 16 14"/>
             </svg>
-            ${noticia.tempLeitura}min
+            ${calcularTempoLeitura(noticia.conteudo)}min
           </span>
         </div>
       </div>
     </div>
   `;
 
-  // Navegação ao clicar no card
-  const url = `noticia.html?${params.toString()}`;
   article.addEventListener("click", () => (window.location.href = url));
   article.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") window.location.href = url;
   });
 
-  // Estrela do card relacionado (reutiliza lógica de favoritar)
   const starBtn = article.querySelector(".feed-card-star");
   const chave = `favorito_${noticia.id}`;
   if (localStorage.getItem(chave) === "true") {

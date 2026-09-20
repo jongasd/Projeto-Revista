@@ -8,7 +8,7 @@ const noticiaService = require("../services/noticiaService");
 const noticiaController = {
   listarTodas: async (req, res, next) => {
     try {
-      const noticias = await noticiaService.listarTodas();
+      const noticias = await noticiaService.listarTodas(req.query.genero);
       res.json({ sucesso: true, dados: noticias, total: noticias.length });
     } catch (erro) {
       next(erro);
@@ -26,7 +26,9 @@ const noticiaController = {
 
   criar: async (req, res, next) => {
     try {
-      const novoId = await noticiaService.criar(req.body);
+      // usuario_id vem do token, nunca do body.
+      const dados = { ...req.body, usuario_id: req.usuario.id };
+      const novoId = await noticiaService.criar(dados);
       res.status(201).json({
         sucesso: true,
         mensagem: "Notícia criada com sucesso",

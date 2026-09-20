@@ -8,7 +8,16 @@ const CAMPOS_OBRIGATORIOS_CRIACAO = [
   "conteudo",
   ];
 
-const CAMPOS_ATUALIZAVEIS = ["titulo","imagem_id", "genero", "descricao", "conteudo"];
+const CAMPOS_ATUALIZAVEIS = [
+  "titulo",
+  "imagem_id",
+  "imagem_capa",
+  "genero",
+  "descricao",
+  "conteudo",
+  "autor_nome",
+  "arquivo_pdf",
+];
 
 /**
  * Valida e converte um ID recebido como string/number.
@@ -58,7 +67,7 @@ const extrairCamposAtualizaveis = (body) => {
 };
 
 const noticiaService = {
-  listarTodas: () => Noticia.findAll(),
+  listarTodas: (genero) => Noticia.findAll(genero),
 
   buscarPorId: async (id) => {
     const idValido = parseId(id);
@@ -80,6 +89,8 @@ const noticiaService = {
       genero: String(body.genero).trim(),
       descricao: body.descricao ? String(body.descricao).trim() : null,
       conteudo: String(body.conteudo).trim(),
+      autor_nome: body.autor_nome ? String(body.autor_nome).trim() : null,
+      imagem_capa: body.imagem_capa ? String(body.imagem_capa).trim() : null,
     };
 
     return await Noticia.create(dados);
